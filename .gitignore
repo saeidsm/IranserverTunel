@@ -1,0 +1,26 @@
+# State files (never commit)
+state/
+logs/
+test-results/
+configs/*.json
+!configs/.gitkeep
+
+# API keys
+.api_keys
+*.api_keys
+*api_keys*
+
+# Local development
+*.local
+.env
+.env.*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db

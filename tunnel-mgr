@@ -1,0 +1,1326 @@
+#!/usr/bin/env bash
+# tunnel-mgr - Unified V2Ray/Xray Tunnel Manager
+#
+# A complete management tool for managing multiple V2Ray/Xray SOCKS5 tunnels
+# behind a single HAProxy load balancer entry point.
+#
+# Use case: Iranian VPS that needs to access international services through
+# multiple V2Ray providers, with automatic failover and health monitoring.
+#
+# Usage:
+#   sudo bash tunnel-mgr               # interactive menu
+#   sudo bash tunnel-mgr setup         # first-time setup (HAProxy + cron)
+#   sudo bash tunnel-mgr status        # show pool status
+#   sudo bash tunnel-mgr add NAME      # add a new tunnel
+#   sudo bash tunnel-mgr remove NAME   # remove a tunnel
+#   sudo bash tunnel-mgr test NAME     # deep test a tunnel
+#   sudo bash tunnel-mgr test-all      # deep test all tunnels
+#   sudo bash tunnel-mgr pause NAME    # pause a tunnel for 2 hours
+#   sudo bash tunnel-mgr resume NAME   # resume a paused tunnel
+#   sudo bash tunnel-mgr health        # quick health check (cron)
+#   sudo bash tunnel-mgr reload        # rebuild HAProxy config
+
+set -uo pipefail
+
+# ═══════════════════════════════════════════════════════════
+#   Configuration
+# ═══════════════════════════════════════════════════════════
+WORK_DIR="${TUNNEL_MGR_HOME:-/home/ubuntu/v2ray}"
+CONFIG_DIR="$WORK_DIR/configs"
+STATE_DIR="$WORK_DIR/state"
+LOGS_DIR="$WORK_DIR/logs"
+DATA_DIR="$WORK_DIR/data"
+TEST_RESULTS="$WORK_DIR/test-results"
+MANAGER_DIR="$WORK_DIR/manager"
+STATE_FILE="$STATE_DIR/tunnels.json"
+HAPROXY_CONF="/etc/haproxy/haproxy.cfg"
+HAPROXY_BACKUP="$STATE_DIR/haproxy.cfg.original"
+SOCKS_PORT_BASE=10810
+HAPROXY_LISTEN_PORT=1080
+HAPROXY_STATS_PORT=8404
+KEYS_FILE="${TUNNEL_MGR_KEYS:-/home/ubuntu/.api_keys}"
+DIRECT_HOSTS_FILE="$DATA_DIR/iran-direct-hosts.txt"
+XRAY_BIN="/usr/local/bin/xray"
+
+mkdir -p "$CONFIG_DIR" "$STATE_DIR" "$LOGS_DIR" "$DATA_DIR" "$TEST_RESULTS" "$MANAGER_DIR"
+
+# ═══════════════════════════════════════════════════════════
+#   Colors and helpers
+# ═══════════════════════════════════════════════════════════
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+GRAY='\033[0;90m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+log()  { echo -e "${BLUE}[$(date +%H:%M:%S)]${NC} $*"; }
+ok()   { echo -e "${GREEN}✅${NC} $*"; }
+warn() { echo -e "${YELLOW}⚠️ ${NC} $*"; }
+err()  { echo -e "${RED}❌${NC} $*"; }
+info() { echo -e "${GRAY}ℹ️ ${NC} $*"; }
+
+require_root() {
+    if [ "$EUID" -ne 0 ]; then
+        err "این کار نیاز به sudo دارد. اجرا: sudo bash $0 $*"
+        exit 1
+    fi
+}
+
+require_deps() {
+    local missing=()
+    for cmd in jq curl bc haproxy; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            missing+=("$cmd")
+        fi
+    done
+    if [ ! -x "$XRAY_BIN" ]; then
+        missing+=("xray")
+    fi
+    if [ ${#missing[@]} -gt 0 ]; then
+        err "Dependencies نصب نیستند: ${missing[*]}"
+        info "اجرا: sudo bash $0 setup"
+        exit 1
+    fi
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Iran direct hosts file (initialize on first run)
+# ═══════════════════════════════════════════════════════════
+init_direct_hosts() {
+    if [ ! -f "$DIRECT_HOSTS_FILE" ]; then
+        cat > "$DIRECT_HOSTS_FILE" <<'EOF'
+# Iranian services that MUST bypass tunnel
+# This list is consumed by:
+#   1. Xray routing rules (per-tunnel config)
+#   2. Backend NO_PROXY (when integrated with shahrzad)
+
+# === Local services ===
+localhost
+127.0.0.1
+::1
+host.docker.internal
+
+# === Internal Docker services ===
+mongodb
+redis
+backend
+celery-worker
+celery-beat
+
+# === Shahrzad domains ===
+shahrzad.ir
+shahrzad.ai
+
+# === Storage / CDN ===
+arvanstorage.ir
+arvancloud.ir
+mirror.arvancloud.ir
+
+# === Payment gateways (Iranian) ===
+zarinpal.com
+shaparak.ir
+bmi.ir
+behpardakht.com
+sep.ir
+pay.ir
+nextpay.org
+zibal.ir
+idpay.ir
+
+# === Iranian messengers ===
+bale.ai
+rubika.ir
+eitaa.com
+soroush-app.ir
+
+# === Iranian internet (camouflage hosts) ===
+digikala.com
+snapp.ir
+skyroom.online
+divar.ir
+varzesh3.com
+
+# === Package mirrors (Iran) ===
+mirror.iranserver.com
+ubuntu.shatel.ir
+
+# === Private networks (CIDR) ===
+10.0.0.0/8
+172.16.0.0/12
+192.168.0.0/16
+EOF
+        chown ubuntu:ubuntu "$DIRECT_HOSTS_FILE" 2>/dev/null || true
+    fi
+}
+
+# ═══════════════════════════════════════════════════════════
+#   State management (JSON-based)
+# ═══════════════════════════════════════════════════════════
+init_state() {
+    if [ ! -f "$STATE_FILE" ]; then
+        echo '{"tunnels": {}, "version": 1}' > "$STATE_FILE"
+        chown ubuntu:ubuntu "$STATE_FILE" 2>/dev/null || true
+    fi
+}
+
+state_list() {
+    jq -r '.tunnels | keys[]' "$STATE_FILE" 2>/dev/null
+}
+
+state_get() {
+    local name="$1" field="$2"
+    jq -r ".tunnels[\"$name\"].$field // empty" "$STATE_FILE" 2>/dev/null
+}
+
+state_set() {
+    local name="$1" field="$2" value="$3"
+    local tmp; tmp=$(mktemp)
+    jq ".tunnels[\"$name\"].$field = $value" "$STATE_FILE" > "$tmp" && mv "$tmp" "$STATE_FILE"
+    chown ubuntu:ubuntu "$STATE_FILE" 2>/dev/null || true
+}
+
+state_set_str() {
+    state_set "$1" "$2" "$(jq -cn --arg v "$3" '$v')"
+}
+
+state_add() {
+    local name="$1" port="$2" config="$3"
+    local now; now=$(date -Iseconds)
+    local tmp; tmp=$(mktemp)
+    jq --arg n "$name" --arg p "$port" --arg c "$config" --arg t "$now" '
+        .tunnels[$n] = {
+            "name": $n,
+            "port": ($p | tonumber),
+            "config": $c,
+            "added": $t,
+            "active": false,
+            "qualified": false,
+            "paused_until": null,
+            "last_quick_check": null,
+            "last_quick_pass": null,
+            "consecutive_fails": 0,
+            "last_deep_check": null,
+            "capabilities": {
+                "gemini": null,
+                "flux": null,
+                "elevenlabs": null
+            }
+        }
+    ' "$STATE_FILE" > "$tmp" && mv "$tmp" "$STATE_FILE"
+    chown ubuntu:ubuntu "$STATE_FILE" 2>/dev/null || true
+}
+
+state_remove() {
+    local name="$1"
+    local tmp; tmp=$(mktemp)
+    jq "del(.tunnels[\"$name\"])" "$STATE_FILE" > "$tmp" && mv "$tmp" "$STATE_FILE"
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Port allocation
+# ═══════════════════════════════════════════════════════════
+next_free_port() {
+    local used_ports
+    used_ports=$(jq -r '.tunnels | to_entries | map(.value.port) | .[]' \
+                 "$STATE_FILE" 2>/dev/null | sort -n)
+    local p=$SOCKS_PORT_BASE
+    while echo "$used_ports" | grep -q "^$p$"; do
+        p=$((p + 1))
+    done
+    echo "$p"
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Xray service management
+# ═══════════════════════════════════════════════════════════
+xray_service_create() {
+    local name="$1"
+    local config_path="$CONFIG_DIR/$name.json"
+    local service_file="/etc/systemd/system/xray-$name.service"
+
+    cat > "$service_file" <<EOF
+[Unit]
+Description=Xray Service ($name) - tunnel-mgr
+After=network.target nss-lookup.target
+
+[Service]
+User=root
+ExecStart=$XRAY_BIN run -config $config_path
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    systemctl daemon-reload
+    systemctl enable "xray-$name" >/dev/null 2>&1
+}
+
+xray_service_remove() {
+    local name="$1"
+    systemctl stop "xray-$name" 2>/dev/null
+    systemctl disable "xray-$name" 2>/dev/null
+    rm -f "/etc/systemd/system/xray-$name.service"
+    systemctl daemon-reload
+}
+
+xray_start()   { systemctl start "xray-$1" 2>/dev/null; }
+xray_stop()    { systemctl stop "xray-$1" 2>/dev/null; }
+xray_restart() { systemctl restart "xray-$1" 2>/dev/null; }
+xray_active()  { systemctl is-active "xray-$1" 2>/dev/null; }
+
+# ═══════════════════════════════════════════════════════════
+#   URL parsing (urlencode/urldecode)
+# ═══════════════════════════════════════════════════════════
+url_decode() {
+    printf '%b' "${1//%/\\x}"
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Build Xray config from VLESS URL
+# ═══════════════════════════════════════════════════════════
+vless_to_config() {
+    local url="$1" out="$2" name="$3" port="$4"
+
+    if [[ ! "$url" =~ ^vless:// ]]; then
+        err "URL must start with vless://"
+        return 1
+    fi
+
+    local body="${url#vless://}"
+    local uuid="${body%%@*}"
+    local rest="${body#*@}"
+    local hostport="${rest%%\?*}"
+    local query="${rest#*\?}"
+    query="${query%%#*}"
+    local host="${hostport%%:*}"
+    local server_port="${hostport##*:}"
+
+    local network="tcp" security="none" path="/" ws_host="" header_type=""
+    local IFS='&'
+    for kv in $query; do
+        local k="${kv%%=*}" v="${kv#*=}"
+        v=$(url_decode "$v")
+        case "$k" in
+            type)        network="$v" ;;
+            security)    security="$v" ;;
+            path)        path="$v" ;;
+            host)        ws_host="$v" ;;
+            headerType)  header_type="$v" ;;
+        esac
+    done
+
+    # Build streamSettings
+    local stream_settings
+    case "$network" in
+        ws)
+            stream_settings=$(cat <<EOF
+"network": "ws",
+"wsSettings": {
+    "path": "$path",
+    "host": "$ws_host",
+    "headers": { "Host": "$ws_host" }
+}
+EOF
+)
+            ;;
+        tcp)
+            if [ "$header_type" = "http" ]; then
+                local hosts_json
+                if echo "$ws_host" | grep -q ','; then
+                    hosts_json=$(echo "$ws_host" | jq -R 'split(",") | map(. | gsub("^\\s+|\\s+$"; ""))')
+                else
+                    hosts_json="[\"$ws_host\"]"
+                fi
+                stream_settings=$(cat <<EOF
+"network": "tcp",
+"tcpSettings": {
+    "header": {
+        "type": "http",
+        "request": {
+            "version": "1.1",
+            "method": "GET",
+            "path": ["$path"],
+            "headers": {
+                "Host": $hosts_json,
+                "Accept-Encoding": ["gzip, deflate"],
+                "Connection": ["keep-alive"]
+            }
+        }
+    }
+}
+EOF
+)
+            else
+                stream_settings='"network": "tcp"'
+            fi
+            ;;
+        *)
+            err "Network type unsupported: $network"
+            err "Supported: ws, tcp (with optional http header)"
+            return 1
+            ;;
+    esac
+
+    # Build whitelist hosts (server + ws_host)
+    local whitelist_hosts="\"$host\""
+    if [ -n "$ws_host" ] && [ "$ws_host" != "$host" ]; then
+        whitelist_hosts="$whitelist_hosts, \"$ws_host\""
+    fi
+
+    # Write config
+    cat > "$out" <<EOF
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "$LOGS_DIR/access-$name.log",
+    "error": "$LOGS_DIR/error-$name.log"
+  },
+  "dns": {
+    "servers": [
+      {
+        "address": "178.22.122.100",
+        "domains": ["geosite:category-ir", "regexp:.*\\\\.ir$"],
+        "skipFallback": true
+      },
+      "1.1.1.1",
+      "8.8.8.8"
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "port": $port,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": false
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [{
+          "address": "$host",
+          "port": $server_port,
+          "users": [{ "id": "$uuid", "encryption": "none" }]
+        }]
+      },
+      "streamSettings": { $stream_settings }
+    },
+    { "tag": "direct", "protocol": "freedom", "settings": {"domainStrategy": "UseIP"} },
+    { "tag": "block",  "protocol": "blackhole" }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      { "type": "field", "ip": ["geoip:private"], "outboundTag": "direct" },
+      { "type": "field", "ip": ["geoip:ir"], "outboundTag": "direct" },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:category-ir",
+          "regexp:.*\\\\.ir$",
+          "domain:arvancloud.ir",
+          "domain:arvanstorage.ir",
+          "domain:zarinpal.com",
+          "domain:shaparak.ir",
+          "domain:bale.ai",
+          "domain:digikala.com",
+          "domain:snapp.ir"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "domain": [$whitelist_hosts],
+        "outboundTag": "direct"
+      },
+      { "type": "field", "outboundTag": "proxy", "network": "tcp,udp" }
+    ]
+  }
+}
+EOF
+
+    if ! "$XRAY_BIN" run -test -config "$out" >/dev/null 2>&1; then
+        err "Generated config failed validation"
+        "$XRAY_BIN" run -test -config "$out" 2>&1 | tail -10
+        return 1
+    fi
+
+    return 0
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Enrich existing JSON config (paste or import)
+# ═══════════════════════════════════════════════════════════
+enrich_json_config() {
+    local config="$1" name="$2" port="$3"
+    local tmp; tmp=$(mktemp)
+
+    log "تطبیق port به $port..."
+    if ! jq --argjson p "$port" '
+        if .inbounds and (.inbounds | length > 0) then
+            .inbounds[0].port = $p |
+            .inbounds[0].listen = "127.0.0.1"
+        else
+            error("config has no inbounds")
+        end
+    ' "$config" > "$tmp"; then
+        err "config inbounds معتبر نیست"
+        return 1
+    fi
+    mv "$tmp" "$config"
+
+    log "تنظیم log paths..."
+    jq --arg name "$name" --arg logs "$LOGS_DIR" '
+        .log = (.log // {}) |
+        .log.loglevel = "warning" |
+        .log.access = "\($logs)/access-\($name).log" |
+        .log.error = "\($logs)/error-\($name).log"
+    ' "$config" > "$tmp" && mv "$tmp" "$config"
+
+    log "تنظیم DNS با Shecan برای .ir..."
+    jq '
+        .dns = {
+            "servers": [
+                {
+                    "address": "178.22.122.100",
+                    "domains": ["geosite:category-ir", "regexp:.*\\.ir$"],
+                    "skipFallback": true
+                },
+                "1.1.1.1",
+                "8.8.8.8"
+            ]
+        }
+    ' "$config" > "$tmp" && mv "$tmp" "$config"
+
+    log "استخراج server hosts برای direct routing..."
+    local proxy_hosts
+    proxy_hosts=$(jq -r '
+        [
+            (.outbounds[]?
+             | select(.protocol == "vless" or .protocol == "vmess" or .protocol == "trojan")
+             | (.settings.vnext[0]?.address, .settings.servers[0]?.address)
+            ),
+            (.outbounds[]? | .streamSettings?.wsSettings?.host),
+            (.outbounds[]? | .streamSettings?.tcpSettings?.header?.request?.headers?.Host?[]?)
+        ] | map(select(. != null and . != "")) | unique
+    ' "$config" 2>/dev/null)
+
+    log "اعمال routing rules..."
+    jq --argjson proxy_hosts "$proxy_hosts" '
+        .routing = {
+            "domainStrategy": "IPIfNonMatch",
+            "rules": [
+                { "type": "field", "ip": ["geoip:private"], "outboundTag": "direct" },
+                { "type": "field", "ip": ["geoip:ir"], "outboundTag": "direct" },
+                {
+                    "type": "field",
+                    "domain": [
+                        "geosite:category-ir",
+                        "regexp:.*\\.ir$",
+                        "domain:arvancloud.ir",
+                        "domain:arvanstorage.ir",
+                        "domain:zarinpal.com",
+                        "domain:shaparak.ir",
+                        "domain:bale.ai",
+                        "domain:digikala.com",
+                        "domain:snapp.ir"
+                    ],
+                    "outboundTag": "direct"
+                }
+            ]
+        } |
+        if ($proxy_hosts | length) > 0 then
+            .routing.rules += [{
+                "type": "field",
+                "domain": $proxy_hosts,
+                "outboundTag": "direct"
+            }]
+        else . end |
+        .routing.rules += [{
+            "type": "field",
+            "outboundTag": "proxy",
+            "network": "tcp,udp"
+        }]
+    ' "$config" > "$tmp" && mv "$tmp" "$config"
+
+    log "اطمینان از وجود direct/block outbounds..."
+    jq '
+        .outbounds = (.outbounds // []) |
+        if any(.outbounds[]; .tag == "direct") | not then
+            .outbounds += [{"tag": "direct", "protocol": "freedom", "settings": {"domainStrategy": "UseIP"}}]
+        else . end |
+        if any(.outbounds[]; .tag == "block") | not then
+            .outbounds += [{"tag": "block", "protocol": "blackhole"}]
+        else . end |
+        .outbounds = [.outbounds[] |
+            if (.protocol == "vless" or .protocol == "vmess" or .protocol == "trojan") and (.tag == null or .tag == "") then
+                .tag = "proxy"
+            else . end
+        ]
+    ' "$config" > "$tmp" && mv "$tmp" "$config"
+
+    if "$XRAY_BIN" run -test -config "$config" >/dev/null 2>&1; then
+        ok "Config enriched & valid"
+        return 0
+    else
+        err "Enriched config نامعتبر است:"
+        "$XRAY_BIN" run -test -config "$config" 2>&1 | tail -5
+        return 1
+    fi
+}
+
+# ═══════════════════════════════════════════════════════════
+#   HAProxy config builder
+# ═══════════════════════════════════════════════════════════
+build_haproxy_config() {
+    if [ ! -f "$HAPROXY_BACKUP" ] && [ -f "$HAPROXY_CONF" ]; then
+        cp "$HAPROXY_CONF" "$HAPROXY_BACKUP"
+        info "Original HAProxy config backed up: $HAPROXY_BACKUP"
+    fi
+
+    local active_tunnels
+    active_tunnels=$(jq -r '
+        .tunnels | to_entries[] |
+        select(.value.qualified == true and .value.paused_until == null) |
+        "\(.value.name) \(.value.port)"
+    ' "$STATE_FILE" 2>/dev/null)
+
+    {
+        cat <<EOF
+# HAProxy Tunnel Pool — Generated by tunnel-mgr
+# DO NOT EDIT BY HAND — changes will be overwritten
+
+global
+    log /dev/log local0
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+    maxconn 4096
+
+defaults
+    log global
+    mode tcp
+    option tcplog
+    option dontlognull
+    timeout connect 10s
+    timeout client  60s
+    timeout server  60s
+    retries 3
+
+# ─── Tunnel Pool: SOCKS5 entry on 127.0.0.1:$HAPROXY_LISTEN_PORT ───
+frontend tunnel_pool_in
+    bind 127.0.0.1:$HAPROXY_LISTEN_PORT
+    default_backend tunnel_pool
+
+backend tunnel_pool
+    balance roundrobin
+    option tcp-check
+EOF
+        if [ -z "$active_tunnels" ]; then
+            echo "    # No qualified tunnels — pool is empty"
+        else
+            while read -r name port; do
+                [ -z "$name" ] && continue
+                echo "    server $name 127.0.0.1:$port check inter 30s fall 2 rise 2"
+            done <<< "$active_tunnels"
+        fi
+        cat <<EOF
+
+# ─── Stats endpoint (localhost only) ───
+frontend stats_fe
+    mode http
+    bind 127.0.0.1:$HAPROXY_STATS_PORT
+    stats enable
+    stats uri /
+    stats refresh 10s
+    stats show-legends
+EOF
+    } > "$HAPROXY_CONF"
+
+    if haproxy -c -f "$HAPROXY_CONF" >/dev/null 2>&1; then
+        if systemctl is-active haproxy >/dev/null 2>&1; then
+            systemctl reload haproxy 2>/dev/null || systemctl restart haproxy
+        else
+            systemctl start haproxy
+        fi
+        return 0
+    else
+        err "HAProxy config validation failed:"
+        haproxy -c -f "$HAPROXY_CONF" 2>&1 | tail -10
+        return 1
+    fi
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Tunnel testing
+# ═══════════════════════════════════════════════════════════
+test_tunnel_quick() {
+    local name="$1"
+    local port; port=$(state_get "$name" "port")
+
+    local http
+    http=$(curl -x "socks5h://127.0.0.1:$port" -sI --max-time 15 \
+           -w "%{http_code}" -o /dev/null \
+           https://aiplatform.googleapis.com/ 2>/dev/null || echo "fail")
+
+    if [[ "$http" =~ ^[0-9]+$ ]] && [ "$http" -ge 200 ] && [ "$http" -lt 600 ]; then
+        return 0
+    fi
+    return 1
+}
+
+test_tunnel_deep() {
+    local name="$1"
+    local port; port=$(state_get "$name" "port")
+    local proxy="socks5h://127.0.0.1:$port"
+    local results_dir="$TEST_RESULTS/$name"
+    mkdir -p "$results_dir"
+    local report="$results_dir/deep-$(date +%Y%m%d-%H%M%S).json"
+
+    [ -f "$KEYS_FILE" ] && source "$KEYS_FILE"
+
+    local reach_ok=false concurrent_ok=false gemini_ok=false flux_ok=false el_ok=false
+
+    # 1. Reachability
+    local http
+    http=$(curl -x "$proxy" -sI --max-time 15 -w "%{http_code}" -o /dev/null \
+           https://aiplatform.googleapis.com/ 2>/dev/null || echo "fail")
+    [[ "$http" =~ ^[0-9]+$ ]] && [ "$http" -ge 200 ] && [ "$http" -lt 600 ] && reach_ok=true
+
+    # 2. Concurrent (3 parallel)
+    local tmp; tmp=$(mktemp -d)
+    for i in 1 2 3; do
+        ( curl -x "$proxy" -sI --max-time 20 -w "%{http_code}" -o /dev/null \
+              https://generativelanguage.googleapis.com/v1beta/models 2>/dev/null > "$tmp/$i" || true ) &
+    done
+    wait
+    local succ=0
+    for i in 1 2 3; do
+        local h
+        h=$(cat "$tmp/$i" 2>/dev/null)
+        [[ "$h" =~ ^[0-9]+$ ]] && [ "$h" -ge 200 ] && [ "$h" -lt 600 ] && succ=$((succ+1))
+    done
+    rm -rf "$tmp"
+    [ "$succ" -ge 2 ] && concurrent_ok=true
+
+    # 3. Gemini
+    if [ -n "${GEMINI_KEY:-}" ]; then
+        local resp
+        resp=$(curl -x "$proxy" -s --max-time 30 \
+            -H "Content-Type: application/json" -X POST \
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$GEMINI_KEY" \
+            -d '{"contents":[{"parts":[{"text":"hi"}]}],"generationConfig":{"maxOutputTokens":5}}' 2>&1)
+        echo "$resp" | grep -q '"candidates"' && gemini_ok=true
+    fi
+
+    # 4. FLUX
+    if [ -n "${BFL_KEY:-}" ]; then
+        local job
+        job=$(curl -x "$proxy" -s --max-time 30 \
+            -X POST "https://api.bfl.ai/v1/flux-dev" \
+            -H "Content-Type: application/json" -H "X-Key: $BFL_KEY" \
+            -d '{"prompt":"test","width":256,"height":256,"steps":10}' 2>&1)
+        echo "$job" | jq -e '.id' >/dev/null 2>&1 && flux_ok=true
+    fi
+
+    # 5. ElevenLabs
+    if [ -n "${EL_KEY:-}" ]; then
+        local auth
+        auth=$(curl -x "$proxy" -s --max-time 20 \
+            -H "xi-api-key: $EL_KEY" \
+            "https://api.elevenlabs.io/v1/user" 2>&1)
+        echo "$auth" | grep -q '"subscription"' && el_ok=true
+    fi
+
+    # Save results
+    jq -n \
+        --arg n "$name" \
+        --arg ts "$(date -Iseconds)" \
+        --argjson r "$reach_ok" --argjson c "$concurrent_ok" \
+        --argjson g "$gemini_ok" --argjson f "$flux_ok" --argjson e "$el_ok" \
+        '{tunnel: $n, timestamp: $ts, reachability: $r, concurrent: $c, gemini: $g, flux: $f, elevenlabs: $e}' \
+        > "$report"
+
+    # Update state
+    state_set "$name" "capabilities.gemini" "$gemini_ok"
+    state_set "$name" "capabilities.flux" "$flux_ok"
+    state_set "$name" "capabilities.elevenlabs" "$el_ok"
+    state_set_str "$name" "last_deep_check" "$(date -Iseconds)"
+
+    local qualified=false
+    if $reach_ok && $concurrent_ok && $gemini_ok && $flux_ok && $el_ok; then
+        qualified=true
+    fi
+    state_set "$name" "qualified" "$qualified"
+
+    echo ""
+    echo "  Reachability: $($reach_ok && echo "✅ pass" || echo "❌ fail")"
+    echo "  Concurrent:   $($concurrent_ok && echo "✅ pass" || echo "❌ fail")"
+    echo "  Gemini:       $($gemini_ok && echo "✅ pass" || ([ -n "${GEMINI_KEY:-}" ] && echo "❌ fail" || echo "⏭️  skipped"))"
+    echo "  FLUX:         $($flux_ok && echo "✅ pass" || ([ -n "${BFL_KEY:-}" ] && echo "❌ fail" || echo "⏭️  skipped"))"
+    echo "  ElevenLabs:   $($el_ok && echo "✅ pass" || ([ -n "${EL_KEY:-}" ] && echo "❌ fail" || echo "⏭️  skipped"))"
+    echo ""
+    if $qualified; then
+        ok "$name → qualified for production pool"
+    else
+        warn "$name → not qualified (degraded)"
+    fi
+
+    return 0
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Pause / resume
+# ═══════════════════════════════════════════════════════════
+pause_tunnel() {
+    local name="$1" hours="${2:-2}"
+    local until; until=$(date -d "+$hours hours" -Iseconds)
+    state_set_str "$name" "paused_until" "$until"
+    state_set "$name" "consecutive_fails" "0"
+    log "$name paused until $until"
+    build_haproxy_config
+}
+
+resume_tunnel() {
+    local name="$1"
+    state_set "$name" "paused_until" "null"
+    state_set "$name" "consecutive_fails" "0"
+    log "$name resumed"
+    build_haproxy_config
+}
+
+check_pause_expired() {
+    local now; now=$(date -Iseconds)
+    for name in $(state_list); do
+        local until; until=$(state_get "$name" "paused_until")
+        if [ -n "$until" ] && [ "$until" != "null" ]; then
+            if [[ "$now" > "$until" ]]; then
+                log "$name pause expired — auto-resuming"
+                state_set "$name" "paused_until" "null"
+            fi
+        fi
+    done
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Health check (cron-friendly)
+# ═══════════════════════════════════════════════════════════
+cmd_health() {
+    init_state
+    check_pause_expired
+
+    local changed=false
+
+    for name in $(state_list); do
+        local paused_until; paused_until=$(state_get "$name" "paused_until")
+
+        if [ -n "$paused_until" ] && [ "$paused_until" != "null" ]; then
+            log "$name (paused) — skip"
+            continue
+        fi
+
+        if test_tunnel_quick "$name"; then
+            state_set "$name" "consecutive_fails" "0"
+            state_set "$name" "last_quick_pass" "true"
+            state_set_str "$name" "last_quick_check" "$(date -Iseconds)"
+            ok "$name → up"
+        else
+            local fails; fails=$(state_get "$name" "consecutive_fails")
+            fails=$((fails + 1))
+            state_set "$name" "consecutive_fails" "$fails"
+            state_set "$name" "last_quick_pass" "false"
+            state_set_str "$name" "last_quick_check" "$(date -Iseconds)"
+            warn "$name → fail ($fails consecutive)"
+
+            if [ "$fails" -ge 2 ]; then
+                pause_tunnel "$name" 2
+                changed=true
+            fi
+        fi
+    done
+
+    if $changed; then
+        build_haproxy_config
+    fi
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Status display
+# ═══════════════════════════════════════════════════════════
+cmd_status() {
+    init_state
+
+    local count; count=$(state_list | wc -l)
+
+    echo ""
+    echo -e "${BOLD}════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${BOLD}  Tunnel Pool Status${NC}"
+    echo -e "${BOLD}════════════════════════════════════════════════════════════════${NC}"
+
+    if [ "$count" -eq 0 ]; then
+        warn "هیچ tunnel ای ثبت نشده"
+        info "از منو 'Add' بزن یا: bash $0 add <name>"
+        echo ""
+        return
+    fi
+
+    printf "  %-12s %-12s %-6s %-5s %-7s %-7s %-7s %s\n" \
+        "Name" "Status" "Port" "Qual" "Gemini" "FLUX" "ELabs" "Last check"
+    echo "  ──────────────────────────────────────────────────────────────────────"
+
+    for name in $(state_list); do
+        local port qual paused last cap_g cap_f cap_e xray_status
+        port=$(state_get "$name" "port")
+        qual=$(state_get "$name" "qualified")
+        paused=$(state_get "$name" "paused_until")
+        last=$(state_get "$name" "last_quick_check")
+        cap_g=$(state_get "$name" "capabilities.gemini")
+        cap_f=$(state_get "$name" "capabilities.flux")
+        cap_e=$(state_get "$name" "capabilities.elevenlabs")
+        xray_status=$(xray_active "$name")
+
+        local status_str
+        if [ "$xray_status" != "active" ]; then
+            status_str=$(echo -e "${RED}⛔ stopped ${NC}")
+        elif [ -n "$paused" ] && [ "$paused" != "null" ]; then
+            status_str=$(echo -e "${YELLOW}🚫 paused  ${NC}")
+        elif [ "$qual" = "true" ]; then
+            status_str=$(echo -e "${GREEN}✅ ready   ${NC}")
+        elif [ "$qual" = "false" ]; then
+            status_str=$(echo -e "${YELLOW}⚠️  degraded${NC}")
+        else
+            status_str=$(echo -e "${GRAY}❓ unknown ${NC}")
+        fi
+
+        local q_str
+        case "$qual" in
+            true)  q_str=$(echo -e "${GREEN}YES${NC}") ;;
+            false) q_str=$(echo -e "${RED}NO ${NC}") ;;
+            *)     q_str=$(echo -e "${GRAY}?  ${NC}") ;;
+        esac
+
+        cap_str() {
+            case "$1" in
+                true)  echo -e "${GREEN}✓${NC}" ;;
+                false) echo -e "${RED}✗${NC}" ;;
+                *)     echo -e "${GRAY}?${NC}" ;;
+            esac
+        }
+
+        local last_str="${last:-never}"
+        last_str="${last_str:0:19}"
+
+        printf "  %-12s " "$name"
+        echo -en "$status_str  "
+        printf "%-6s " "$port"
+        echo -en "$q_str    "
+        echo -en "  $(cap_str "$cap_g")     "
+        echo -en " $(cap_str "$cap_f")     "
+        echo -en " $(cap_str "$cap_e")     "
+        echo "$last_str"
+    done
+
+    echo ""
+
+    if systemctl is-active haproxy >/dev/null 2>&1; then
+        local active_count
+        active_count=$(jq -r '.tunnels | to_entries | map(select(.value.qualified == true and .value.paused_until == null)) | length' "$STATE_FILE")
+        echo -e "  HAProxy: ${GREEN}● active${NC}  —  $active_count qualified tunnel(s) in pool"
+        echo -e "  Entry:   ${BOLD}socks5h://127.0.0.1:$HAPROXY_LISTEN_PORT${NC}"
+        echo -e "  Stats:   http://127.0.0.1:$HAPROXY_STATS_PORT/"
+    else
+        echo -e "  HAProxy: ${RED}● stopped${NC}"
+    fi
+    echo ""
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Add tunnel (interactive)
+# ═══════════════════════════════════════════════════════════
+cmd_add() {
+    init_state
+
+    local name="${1:-}"
+    if [ -z "$name" ]; then
+        read -rp "نام tunnel (e.g., mkmovie): " name
+    fi
+
+    if [ -z "$name" ] || [[ "$name" =~ [^a-z0-9_-] ]]; then
+        err "نام نامعتبر. فقط حروف کوچک، عدد، _ و -"
+        return 1
+    fi
+
+    if [ -n "$(state_get "$name" "port")" ]; then
+        err "tunnel با این نام موجود است: $name"
+        info "برای حذف: $0 remove $name"
+        return 1
+    fi
+
+    echo ""
+    echo "روش اضافه کردن کانفیگ:"
+    echo "  1) VLESS URL (vless://...)"
+    echo "  2) فایل JSON موجود (مسیر فایل)"
+    echo "  3) Paste JSON inline (پایان با Ctrl+D)"
+    read -rp "انتخاب [1/2/3]: " method
+
+    local port; port=$(next_free_port)
+    local config_path="$CONFIG_DIR/$name.json"
+
+    case "$method" in
+        1)
+            read -rp "VLESS URL: " url
+            if [[ ! "$url" =~ ^vless:// ]]; then
+                err "URL باید با vless:// شروع شود"
+                return 1
+            fi
+            log "ساخت کانفیگ از URL..."
+            if ! vless_to_config "$url" "$config_path" "$name" "$port"; then
+                rm -f "$config_path"
+                return 1
+            fi
+            ok "Config built from URL"
+            ;;
+        2)
+            read -rp "مسیر فایل JSON: " src
+            if [ ! -f "$src" ]; then
+                err "فایل وجود ندارد: $src"
+                return 1
+            fi
+            cp "$src" "$config_path"
+            log "Enriching with Iran routing rules..."
+            if ! enrich_json_config "$config_path" "$name" "$port"; then
+                rm -f "$config_path"
+                return 1
+            fi
+            ;;
+        3)
+            echo ""
+            echo "──────────────────────────────────────────────────────────"
+            echo "  محتوای JSON را paste کن. برای پایان Ctrl+D بزن:"
+            echo "──────────────────────────────────────────────────────────"
+            cat > "$config_path"
+
+            if [ ! -s "$config_path" ]; then
+                err "محتوا خالی"
+                rm -f "$config_path"
+                return 1
+            fi
+
+            if ! jq empty "$config_path" 2>/dev/null; then
+                err "JSON syntax نامعتبر"
+                rm -f "$config_path"
+                return 1
+            fi
+
+            log "JSON دریافت شد، در حال enrichment..."
+            if ! enrich_json_config "$config_path" "$name" "$port"; then
+                rm -f "$config_path"
+                return 1
+            fi
+            ;;
+        *)
+            err "گزینه نامعتبر"
+            return 1
+            ;;
+    esac
+
+    chmod 600 "$config_path"
+    chown ubuntu:ubuntu "$config_path" 2>/dev/null || true
+
+    state_add "$name" "$port" "$config_path"
+
+    log "ساخت systemd service..."
+    xray_service_create "$name"
+    xray_start "$name"
+    sleep 2
+
+    if [ "$(xray_active "$name")" != "active" ]; then
+        err "Xray service start نشد:"
+        journalctl -u "xray-$name" --no-pager -n 20
+        return 1
+    fi
+
+    ok "$name on port $port — service running"
+
+    log "تست اولیه (reachability)..."
+    if test_tunnel_quick "$name"; then
+        ok "Tunnel responsive"
+    else
+        warn "Tunnel جواب نمی‌دهد — احتمال مشکل سرور"
+    fi
+
+    if [ -f "$KEYS_FILE" ]; then
+        echo ""
+        read -rp "تست عمیق با API keys؟ [Y/n]: " do_deep
+        if [[ ! "$do_deep" =~ ^[nN] ]]; then
+            log "تست عمیق..."
+            test_tunnel_deep "$name"
+        fi
+    else
+        info "API keys file not found at $KEYS_FILE — skipping deep test"
+    fi
+
+    build_haproxy_config
+    ok "$name added successfully"
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Remove tunnel
+# ═══════════════════════════════════════════════════════════
+cmd_remove() {
+    init_state
+    local name="${1:-}"
+
+    if [ -z "$name" ]; then
+        cmd_status
+        read -rp "نام tunnel برای حذف: " name
+    fi
+
+    if ! state_list | grep -qx "$name"; then
+        err "tunnel یافت نشد: $name"
+        return 1
+    fi
+
+    read -rp "مطمئنی $name حذف شود? [y/N]: " confirm
+    [[ ! "$confirm" =~ ^[yY] ]] && { log "لغو شد"; return 0; }
+
+    xray_service_remove "$name"
+    rm -f "$CONFIG_DIR/$name.json"
+    rm -rf "$TEST_RESULTS/$name"
+    state_remove "$name"
+    build_haproxy_config
+
+    ok "$name removed"
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Test commands
+# ═══════════════════════════════════════════════════════════
+cmd_test() {
+    init_state
+    local name="${1:-}"
+    if [ -z "$name" ]; then
+        cmd_status
+        read -rp "نام tunnel برای تست: " name
+    fi
+
+    if ! state_list | grep -qx "$name"; then
+        err "tunnel یافت نشد: $name"
+        return 1
+    fi
+
+    log "تست عمیق $name..."
+    test_tunnel_deep "$name"
+    build_haproxy_config
+}
+
+cmd_test_all() {
+    init_state
+    local count; count=$(state_list | wc -l)
+    if [ "$count" -eq 0 ]; then
+        warn "هیچ tunnel ای ثبت نشده"
+        return 0
+    fi
+
+    log "تست عمیق $count tunnel..."
+    for name in $(state_list); do
+        echo ""
+        log "─── $name ───"
+        test_tunnel_deep "$name"
+    done
+    build_haproxy_config
+    echo ""
+    ok "همه تست‌ها انجام شد"
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Pause / Resume commands
+# ═══════════════════════════════════════════════════════════
+cmd_pause() {
+    init_state
+    local name="${1:-}" hours="${2:-2}"
+    if [ -z "$name" ]; then
+        cmd_status
+        read -rp "نام tunnel برای pause: " name
+        read -rp "چند ساعت? [2]: " h
+        hours="${h:-2}"
+    fi
+    if ! state_list | grep -qx "$name"; then
+        err "tunnel یافت نشد"
+        return 1
+    fi
+    pause_tunnel "$name" "$hours"
+    ok "$name paused for $hours hours"
+}
+
+cmd_resume() {
+    init_state
+    local name="${1:-}"
+    if [ -z "$name" ]; then
+        cmd_status
+        read -rp "نام tunnel برای resume: " name
+    fi
+    if ! state_list | grep -qx "$name"; then
+        err "tunnel یافت نشد"
+        return 1
+    fi
+    resume_tunnel "$name"
+    ok "$name resumed"
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Setup (one-time install)
+# ═══════════════════════════════════════════════════════════
+cmd_setup() {
+    require_root
+
+    log "نصب dependencies..."
+    apt-get update >/dev/null 2>&1
+    apt-get install -y haproxy whiptail jq bc curl >/dev/null 2>&1
+
+    if [ ! -x "$XRAY_BIN" ]; then
+        warn "Xray installed نیست. لطفاً قبل از این، Xray را نصب کن."
+        info "دستورالعمل: https://github.com/XTLS/Xray-core/releases"
+        return 1
+    fi
+
+    if [ ! -f "$HAPROXY_BACKUP" ] && [ -f "$HAPROXY_CONF" ]; then
+        cp "$HAPROXY_CONF" "$HAPROXY_BACKUP"
+    fi
+
+    init_state
+    init_direct_hosts
+    build_haproxy_config
+
+    log "نصب cron jobs..."
+    local cron_file="/etc/cron.d/tunnel-mgr"
+    cat > "$cron_file" <<EOF
+# Tunnel Manager — auto-generated
+# Quick health check every 15 minutes
+*/15 * * * * root bash $MANAGER_DIR/tunnel-mgr health >> $LOGS_DIR/health.log 2>&1
+# Deep test every 6 hours (requires keys file at $KEYS_FILE)
+30 */6 * * * root bash $MANAGER_DIR/tunnel-mgr test-all >> $LOGS_DIR/deep-test.log 2>&1
+EOF
+    chmod 644 "$cron_file"
+
+    ok "Setup کامل شد"
+    cmd_status
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Interactive menu
+# ═══════════════════════════════════════════════════════════
+menu() {
+    init_state
+
+    while true; do
+        clear
+        cmd_status
+
+        echo "──────────────────────────────────────────────"
+        echo "  Menu"
+        echo "──────────────────────────────────────────────"
+        echo "  1) Add tunnel (URL / file / paste)"
+        echo "  2) Remove tunnel"
+        echo "  3) Test tunnel (deep)"
+        echo "  4) Test ALL tunnels"
+        echo "  5) Pause tunnel (2h)"
+        echo "  6) Resume tunnel"
+        echo "  7) Quick health check (all)"
+        echo "  8) Rebuild HAProxy config"
+        echo "  9) View HAProxy stats info"
+        echo "  0) Exit"
+        echo ""
+        read -rp "انتخاب: " choice
+
+        case "$choice" in
+            1) cmd_add ;;
+            2) cmd_remove ;;
+            3) cmd_test ;;
+            4) cmd_test_all ;;
+            5) cmd_pause ;;
+            6) cmd_resume ;;
+            7) cmd_health ;;
+            8) build_haproxy_config && ok "HAProxy reloaded" ;;
+            9)
+                echo ""
+                echo "HAProxy stats از مرورگر:"
+                echo "  ssh -L $HAPROXY_STATS_PORT:127.0.0.1:$HAPROXY_STATS_PORT user@server"
+                echo "  → http://localhost:$HAPROXY_STATS_PORT/"
+                ;;
+            0|q|Q) exit 0 ;;
+            *) warn "گزینه نامعتبر" ;;
+        esac
+
+        echo ""
+        read -rp "Enter بزن برای ادامه..." _
+    done
+}
+
+# ═══════════════════════════════════════════════════════════
+#   Main
+# ═══════════════════════════════════════════════════════════
+init_state
+init_direct_hosts
+
+case "${1:-menu}" in
+    setup)        cmd_setup ;;
+    menu)         menu ;;
+    list|ls)      cmd_status ;;
+    status)       cmd_status ;;
+    add)          cmd_add "${2:-}" ;;
+    remove|rm)    cmd_remove "${2:-}" ;;
+    test)         cmd_test "${2:-}" ;;
+    test-all)     cmd_test_all ;;
+    pause)        cmd_pause "${2:-}" "${3:-}" ;;
+    resume)       cmd_resume "${2:-}" ;;
+    health)       cmd_health ;;
+    reload)       build_haproxy_config ;;
+    -h|--help|help)
+        cat <<EOF
+Tunnel Manager — Unified V2Ray/Xray tunnel pool
+
+Usage: sudo bash $0 [command]
+
+Commands:
+  setup        First-time installation (HAProxy + cron)
+  menu         Interactive TUI menu (default)
+  status, ls   Show pool status
+  add NAME     Add a new tunnel
+  remove NAME  Remove a tunnel
+  test NAME    Deep test a specific tunnel
+  test-all     Deep test all tunnels
+  pause NAME   Pause a tunnel for 2 hours (or specify hours)
+  resume NAME  Resume a paused tunnel
+  health       Quick health check (used by cron)
+  reload       Rebuild HAProxy config from state
+
+Environment:
+  TUNNEL_MGR_HOME   Override work dir (default: /home/ubuntu/v2ray)
+  TUNNEL_MGR_KEYS   Path to API keys file (default: /home/ubuntu/.api_keys)
+EOF
+        ;;
+    *)
+        err "Unknown command: $1"
+        echo "Run: $0 help"
+        exit 1
+        ;;
+esac

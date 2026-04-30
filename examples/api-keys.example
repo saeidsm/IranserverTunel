@@ -1,0 +1,15 @@
+# Example API keys file — copy to /home/ubuntu/.api_keys and fill in
+
+# Google Gemini API key
+export GEMINI_KEY=""
+
+# Black Forest Labs (FLUX) API key
+export BFL_KEY=""
+
+# ElevenLabs API key
+export EL_KEY=""
+
+# Important:
+# - chmod 600 this file after creation
+# - Never commit to git
+# - See docs/API_KEYS_SETUP.md for details
