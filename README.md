@@ -1,40 +1,41 @@
 # IranserverTunel
 
-> A unified V2Ray/Xray tunnel manager with HAProxy load balancing, designed for Iranian VPS servers that need reliable access to international AI/SaaS services.
+> Unified V2Ray/Xray tunnel manager with HAProxy load balancing — designed for servers in regions with internet restrictions, particularly Iran.
 
-[Persian section below | بخش فارسی پایین صفحه]
+[Persian section below | بخش فارسی پایین]
 
 ## English
 
 ### Why this exists
 
-Iranian VPS servers face two challenges when accessing international services:
-1. Many international APIs (Google, OpenAI, ElevenLabs, etc.) are blocked from Iranian IPs
-2. Iranian payment gateways (ZarinPal, Shaparak) and CDN (ArvanCloud) require direct access from Iranian IPs
+Servers in restricted-internet regions (e.g., Iran) face two simultaneous challenges:
 
-This tool manages a pool of V2Ray/Xray tunnels (each pointing to different international servers) behind a single HAProxy SOCKS5 entry point. Your application connects to ONE proxy URL, and HAProxy load-balances across healthy tunnels with automatic failover.
+1. International APIs (Google, OpenAI, ElevenLabs, FLUX, etc.) are blocked from local IPs
+2. Local services (payment gateways, CDNs, regional messengers) require direct access from local IPs — they reject foreign IPs
+
+This tool manages a **pool** of V2Ray/Xray tunnels (each pointing to different international servers) behind a **single HAProxy SOCKS5 entry point**. Your application connects to one proxy URL, and HAProxy load-balances across healthy tunnels with automatic failover.
 
 ### Features
 
-- Single entry point — Your app uses `socks5h://127.0.0.1:1080`, regardless of how many tunnels exist
-- Multi-protocol — Supports VLESS via WebSocket, TCP+HTTP camouflage
-- Three input methods — VLESS URLs, JSON files, or paste JSON inline
-- Automatic enrichment — Adds Iran-specific routing rules (Shecan DNS for `.ir`, direct routing for Iranian services)
-- Health monitoring — Quick checks every 15min, deep tests every 6h
-- Auto-pause — Failed tunnels pause for 2 hours, then auto-retry
-- Capability detection — Tests each tunnel against Gemini/FLUX/ElevenLabs to verify which services work
-- Interactive TUI — Simple menu with status colors
+- **Single entry point** — Application uses `socks5h://127.0.0.1:1080`
+- **Multi-protocol support** — VLESS over WebSocket, TCP+HTTP camouflage
+- **Three input methods** — VLESS URLs, JSON files, or paste JSON inline
+- **Automatic enrichment** — Adds region-specific routing rules (Shecan DNS for `.ir`, direct routing for local services)
+- **Health monitoring** — Quick checks every 15min, deep tests every 6h
+- **Auto-pause** — Failed tunnels pause for 2 hours, then auto-retry
+- **Capability detection** — Tests each tunnel against Gemini/FLUX/ElevenLabs to identify which services work
+- **Interactive TUI menu** — Bash-based with status colors
 
-### Important: Iran-specific design
+### Iran-specific design (default)
 
-This tool is opinionated for Iranian deployments. By default, the following hosts bypass the tunnel:
+By default, the following bypass the tunnel:
 - All `.ir` domains
 - ArvanCloud (storage/CDN)
-- ZarinPal, Shaparak (payment gateways)
-- Bale messenger
+- Iranian payment gateways (ZarinPal, Shaparak)
+- Iranian messengers (Bale)
 - Local services (MongoDB, Redis, etc.)
 
-If you're not deploying in Iran, you'll want to customize `data/iran-direct-hosts.txt` after first run.
+If you're not deploying in Iran, customize `data/iran-direct-hosts.txt` after first run.
 
 ### Quick start
 
@@ -50,27 +51,28 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ### چرا این ابزار
 
-سرورهای VPS داخل ایران با دو چالش مواجه‌اند:
-1. سرویس‌های بین‌المللی (Google, OpenAI, ElevenLabs) از IP ایرانی block می‌شوند
-2. درگاه‌های پرداخت ایرانی (زرین‌پال، شاپرک) و CDN ها (ArvanCloud) باید مستقیم از IP ایرانی فراخوانی شوند
+سرورهای VPS داخل ایران با دو چالش همزمان مواجه‌اند:
 
-این ابزار یک pool از tunnel های V2Ray/Xray (که هر کدام به سرور خارجی متفاوتی وصل می‌شوند) را پشت یک HAProxy SOCKS5 مدیریت می‌کند. اپلیکیشن شما فقط به یک proxy URL وصل می‌شود و HAProxy بین tunnel های سالم load balance می‌کند با failover خودکار.
+۱. سرویس‌های بین‌المللی (Google, OpenAI, ElevenLabs, FLUX) از IP ایرانی block می‌شوند
+۲. سرویس‌های ایرانی (درگاه‌های پرداخت، CDN، پیام‌رسان‌ها) باید مستقیم از IP ایرانی فراخوانی شوند
+
+این ابزار یک **pool** از tunnel های V2Ray/Xray را پشت یک **HAProxy SOCKS5** مدیریت می‌کند. اپلیکیشن شما به یک proxy URL وصل می‌شود و HAProxy بین tunnel های سالم load balance می‌کند با failover خودکار.
 
 ### ویژگی‌ها
 
-- یک نقطه ورود — اپ شما به `socks5h://127.0.0.1:1080` وصل می‌شود
-- چند پروتکل — VLESS over WebSocket، TCP+HTTP camouflage
-- سه روش ورودی — VLESS URL، فایل JSON، یا paste JSON
-- Enrichment خودکار — قواعد routing ایرانی اضافه می‌کند (DNS Shecan برای `.ir`، routing مستقیم برای سرویس‌های ایرانی)
-- Monitoring مداوم — تست سریع هر ۱۵ دقیقه، تست عمیق هر ۶ ساعت
-- Auto-pause — tunnel خراب ۲ ساعت غیرفعال می‌شود، بعد retry
-- تشخیص قابلیت — هر tunnel با Gemini/FLUX/ElevenLabs تست می‌شود
-- منوی تعاملی — TUI ساده با رنگ‌بندی
+- **یک نقطه ورود** — `socks5h://127.0.0.1:1080`
+- **چند پروتکل** — VLESS over WebSocket، TCP+HTTP camouflage
+- **سه روش ورودی کانفیگ** — VLESS URL، فایل JSON، یا paste JSON inline
+- **Enrichment خودکار** — قواعد routing ایرانی اضافه می‌کند (Shecan DNS برای `.ir`، routing مستقیم برای سرویس‌های ایرانی)
+- **Monitoring** — تست سریع هر ۱۵ دقیقه، تست عمیق هر ۶ ساعت
+- **Auto-pause** — tunnel خراب ۲ ساعت غیرفعال و بعد retry
+- **تشخیص قابلیت** — هر tunnel با Gemini/FLUX/ElevenLabs تست می‌شود
+- **منوی TUI تعاملی** — bash-based با رنگ‌بندی
 
 ### راه‌اندازی سریع
 
 ```bash
-# 1. نصب Xray-core (یک بار)
+# 1. نصب Xray-core
 sudo bash scripts/install-xray.sh
 
 # 2. نصب tunnel-mgr
@@ -80,7 +82,7 @@ sudo chmod +x /usr/local/bin/tunnel-mgr
 # 3. setup اولیه (HAProxy + cron)
 sudo tunnel-mgr setup
 
-# 4. اضافه کردن اولین tunnel
+# 4. اضافه کردن tunnel
 sudo tunnel-mgr add my-tunnel
 ```
 
@@ -90,14 +92,22 @@ sudo tunnel-mgr add my-tunnel
 
 MIT — see [LICENSE](LICENSE)
 
-## Contributing
+## Project documentation
 
-This is a personal project but PRs are welcome. For Iranian deployment improvements, please test on actual Iranian VPS before submitting.
+- **[docs/INSTALL.md](docs/INSTALL.md)** — Installation guide
+- **[docs/USAGE.md](docs/USAGE.md)** — Command reference  
+- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — How it works internally
+- **[docs/API_KEYS_SETUP.md](docs/API_KEYS_SETUP.md)** — Setting up API keys for deep tests
+- **[TECH_DEBT.md](TECH_DEBT.md)** — Known limitations and future improvements
+- **[SHAHRZAD_INTEGRATION.md](SHAHRZAD_INTEGRATION.md)** — Plans for integrating with Shahrzad backend
+- **[CHANGELOG.md](CHANGELOG.md)** — Version history
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — How to contribute
 
 ## Disclaimer
 
-This software is provided for legitimate use cases such as:
-- Backend API access from servers in regions with internet restrictions
-- Development/staging environments
+This software is provided for legitimate use cases:
+- Server-to-server backend API access in regions with internet restrictions
+- Development and staging environments
+- Educational research
 
-Users are responsible for compliance with their local laws and the terms of service of any tunnel providers used.
+Users are responsible for compliance with local laws and tunnel provider terms of service.
