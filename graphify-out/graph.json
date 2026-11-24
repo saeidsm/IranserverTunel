@@ -1,0 +1,2788 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "install-xray.sh",
+      "file_type": "code",
+      "source_file": "scripts/install-xray.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "scripts_install_xray",
+      "community": 11,
+      "norm_label": "install-xray.sh"
+    },
+    {
+      "label": "install-xray.sh script",
+      "file_type": "code",
+      "source_file": "scripts/install-xray.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "scripts_install_xray_sh__entry",
+      "community": 11,
+      "norm_label": "install-xray.sh script"
+    },
+    {
+      "label": "CHANGELOG.md",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "changelog",
+      "community": 6,
+      "norm_label": "changelog.md"
+    },
+    {
+      "label": "Changelog",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "changelog_changelog",
+      "community": 6,
+      "norm_label": "changelog"
+    },
+    {
+      "label": "[1.0.0] - 2026-04-30",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "changelog_1_0_0_2026_04_30",
+      "community": 6,
+      "norm_label": "[1.0.0] - 2026-04-30"
+    },
+    {
+      "label": "Added",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "changelog_added",
+      "community": 6,
+      "norm_label": "added"
+    },
+    {
+      "label": "Tested",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "changelog_tested",
+      "community": 6,
+      "norm_label": "tested"
+    },
+    {
+      "label": "Known issues",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "changelog_known_issues",
+      "community": 6,
+      "norm_label": "known issues"
+    },
+    {
+      "label": "CONTRIBUTING.md",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "contributing",
+      "community": 8,
+      "norm_label": "contributing.md"
+    },
+    {
+      "label": "Contributing",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "contributing_contributing",
+      "community": 8,
+      "norm_label": "contributing"
+    },
+    {
+      "label": "Before submitting",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "contributing_before_submitting",
+      "community": 8,
+      "norm_label": "before submitting"
+    },
+    {
+      "label": "Code style",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "contributing_code_style",
+      "community": 8,
+      "norm_label": "code style"
+    },
+    {
+      "label": "Local development",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "contributing_local_development",
+      "community": 8,
+      "norm_label": "local development"
+    },
+    {
+      "label": "Testing checklist",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "contributing_testing_checklist",
+      "community": 8,
+      "norm_label": "testing checklist"
+    },
+    {
+      "label": "Reporting issues",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "contributing_reporting_issues",
+      "community": 8,
+      "norm_label": "reporting issues"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 6,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "IranserverTunel",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_iranservertunel",
+      "community": 4,
+      "norm_label": "iranservertunel"
+    },
+    {
+      "label": "English",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "readme_english",
+      "community": 4,
+      "norm_label": "english"
+    },
+    {
+      "label": "Why this exists",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "readme_why_this_exists",
+      "community": 4,
+      "norm_label": "why this exists"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "readme_features",
+      "community": 4,
+      "norm_label": "features"
+    },
+    {
+      "label": "Iran-specific design (default)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "readme_iran_specific_design_default",
+      "community": 4,
+      "norm_label": "iran-specific design (default)"
+    },
+    {
+      "label": "Quick start",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "readme_quick_start",
+      "community": 4,
+      "norm_label": "quick start"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "readme_architecture",
+      "community": 4,
+      "norm_label": "architecture"
+    },
+    {
+      "label": "\u0641\u0627\u0631\u0633\u06cc",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "readme_\u0641\u0627\u0631\u0633\u06cc",
+      "community": 4,
+      "norm_label": "\u0641\u0627\u0631\u0633\u06cc"
+    },
+    {
+      "label": "\u0686\u0631\u0627 \u0627\u06cc\u0646 \u0627\u0628\u0632\u0627\u0631",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "readme_\u0686\u0631\u0627_\u0627\u06cc\u0646_\u0627\u0628\u0632\u0627\u0631",
+      "community": 4,
+      "norm_label": "\u0686\u0631\u0627 \u0627\u06cc\u0646 \u0627\u0628\u0632\u0627\u0631"
+    },
+    {
+      "label": "\u0648\u06cc\u0698\u06af\u06cc\u200c\u0647\u0627",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "readme_\u0648\u06cc\u0698\u06af\u06cc_\u0647\u0627",
+      "community": 4,
+      "norm_label": "\u0648\u06cc\u0698\u06af\u06cc\u200c\u0647\u0627"
+    },
+    {
+      "label": "\u0631\u0627\u0647\u200c\u0627\u0646\u062f\u0627\u0632\u06cc \u0633\u0631\u06cc\u0639",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "readme_\u0631\u0627\u0647_\u0627\u0646\u062f\u0627\u0632\u06cc_\u0633\u0631\u06cc\u0639",
+      "community": 4,
+      "norm_label": "\u0631\u0627\u0647\u200c\u0627\u0646\u062f\u0627\u0632\u06cc \u0633\u0631\u06cc\u0639"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "readme_license",
+      "community": 4,
+      "norm_label": "license"
+    },
+    {
+      "label": "Project documentation",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L95",
+      "_origin": "ast",
+      "id": "readme_project_documentation",
+      "community": 4,
+      "norm_label": "project documentation"
+    },
+    {
+      "label": "Disclaimer",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L106",
+      "_origin": "ast",
+      "id": "readme_disclaimer",
+      "community": 4,
+      "norm_label": "disclaimer"
+    },
+    {
+      "label": "SHAHRZAD_INTEGRATION.md",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "shahrzad_integration",
+      "community": 1,
+      "norm_label": "shahrzad_integration.md"
+    },
+    {
+      "label": "Shahrzad Integration Guide",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "shahrzad_integration_shahrzad_integration_guide",
+      "community": 1,
+      "norm_label": "shahrzad integration guide"
+    },
+    {
+      "label": "\ud83c\udfaf \u0627\u0635\u0648\u0644 \u0637\u0631\u0627\u062d\u06cc",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0627\u0635\u0648\u0644_\u0637\u0631\u0627\u062d\u06cc",
+      "community": 1,
+      "norm_label": "\ud83c\udfaf \u0627\u0635\u0648\u0644 \u0637\u0631\u0627\u062d\u06cc"
+    },
+    {
+      "label": "\ud83d\udccb \u0641\u0647\u0631\u0633\u062a \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a \u0644\u0627\u0632\u0645",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "community": 2,
+      "norm_label": "\ud83d\udccb \u0641\u0647\u0631\u0633\u062a \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a \u0644\u0627\u0632\u0645"
+    },
+    {
+      "label": "\ud83d\udd27 INT-001: Region-aware deployment config",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_001_region_aware_deployment_config",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-001: region-aware deployment config"
+    },
+    {
+      "label": "\ud83d\udd27 INT-002: Domain configuration per deployment",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_002_domain_configuration_per_deployment",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-002: domain configuration per deployment"
+    },
+    {
+      "label": "\ud83d\udd27 INT-003: AI services proxy support (TUNNEL_PROXY)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_003_ai_services_proxy_support_tunnel_proxy",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-003: ai services proxy support (tunnel_proxy)"
+    },
+    {
+      "label": "\ud83d\udd27 INT-004: Direct hosts file (Iran-aware NO_PROXY)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_004_direct_hosts_file_iran_aware_no_proxy",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-004: direct hosts file (iran-aware no_proxy)"
+    },
+    {
+      "label": "\ud83d\udd27 INT-005: Payment provider feature flags",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_005_payment_provider_feature_flags",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-005: payment provider feature flags"
+    },
+    {
+      "label": "\ud83d\udd27 INT-006: Messenger feature flags (Telegram vs Bale)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L196",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_006_messenger_feature_flags_telegram_vs_bale",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-006: messenger feature flags (telegram vs bale)"
+    },
+    {
+      "label": "\ud83d\udd27 INT-007: Language feature flags",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L230",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_007_language_feature_flags",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-007: language feature flags"
+    },
+    {
+      "label": "\ud83d\udd27 INT-008: Storage backend per region",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L251",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_008_storage_backend_per_region",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-008: storage backend per region"
+    },
+    {
+      "label": "\ud83d\udd27 INT-009: Email provider per region",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L287",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_009_email_provider_per_region",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-009: email provider per region"
+    },
+    {
+      "label": "\ud83d\udd27 INT-010: ZarinPal specific routing",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L309",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_010_zarinpal_specific_routing",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-010: zarinpal specific routing"
+    },
+    {
+      "label": "\ud83d\udd27 INT-011: Sentry per region",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L330",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_011_sentry_per_region",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-011: sentry per region"
+    },
+    {
+      "label": "\ud83d\udd27 INT-012: Database per region",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L358",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_012_database_per_region",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-012: database per region"
+    },
+    {
+      "label": "\ud83d\udd27 INT-013: API keys per region",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L369",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_013_api_keys_per_region",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-013: api keys per region"
+    },
+    {
+      "label": "\ud83d\udd27 INT-014: Frontend region awareness",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L397",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_014_frontend_region_awareness",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-014: frontend region awareness"
+    },
+    {
+      "label": "\ud83d\udd27 INT-015: Cron job differences per region",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L425",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_015_cron_job_differences_per_region",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-015: cron job differences per region"
+    },
+    {
+      "label": "\ud83d\udd27 INT-016: Admin panel region awareness",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L451",
+      "_origin": "ast",
+      "id": "shahrzad_integration_int_016_admin_panel_region_awareness",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 int-016: admin panel region awareness"
+    },
+    {
+      "label": "\ud83d\udcd0 \u0645\u0639\u0645\u0627\u0631\u06cc \u0646\u0647\u0627\u06cc\u06cc \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L463",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0645\u0639\u0645\u0627\u0631\u06cc_\u0646\u0647\u0627\u06cc\u06cc_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc",
+      "community": 1,
+      "norm_label": "\ud83d\udcd0 \u0645\u0639\u0645\u0627\u0631\u06cc \u0646\u0647\u0627\u06cc\u06cc \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc"
+    },
+    {
+      "label": "\ud83d\udcc5 \u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u062a\u0631\u062a\u06cc\u0628 \u0627\u062c\u0631\u0627",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L500",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f_\u062a\u0631\u062a\u06cc\u0628_\u0627\u062c\u0631\u0627",
+      "community": 1,
+      "norm_label": "\ud83d\udcc5 \u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u062a\u0631\u062a\u06cc\u0628 \u0627\u062c\u0631\u0627"
+    },
+    {
+      "label": "Sprint A (Foundation, ~\u06f1 \u0647\u0641\u062a\u0647)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L504",
+      "_origin": "ast",
+      "id": "shahrzad_integration_sprint_a_foundation_\u06f1_\u0647\u0641\u062a\u0647",
+      "community": 1,
+      "norm_label": "sprint a (foundation, ~\u06f1 \u0647\u0641\u062a\u0647)"
+    },
+    {
+      "label": "Sprint B (Tunnel Integration, ~\u06f1 \u0647\u0641\u062a\u0647)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L510",
+      "_origin": "ast",
+      "id": "shahrzad_integration_sprint_b_tunnel_integration_\u06f1_\u0647\u0641\u062a\u0647",
+      "community": 1,
+      "norm_label": "sprint b (tunnel integration, ~\u06f1 \u0647\u0641\u062a\u0647)"
+    },
+    {
+      "label": "Sprint C (Region-specific Providers, ~\u06f1 \u0647\u0641\u062a\u0647)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L516",
+      "_origin": "ast",
+      "id": "shahrzad_integration_sprint_c_region_specific_providers_\u06f1_\u0647\u0641\u062a\u0647",
+      "community": 1,
+      "norm_label": "sprint c (region-specific providers, ~\u06f1 \u0647\u0641\u062a\u0647)"
+    },
+    {
+      "label": "Sprint D (Iran-specific, ~\u06f2 \u0647\u0641\u062a\u0647)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L522",
+      "_origin": "ast",
+      "id": "shahrzad_integration_sprint_d_iran_specific_\u06f2_\u0647\u0641\u062a\u0647",
+      "community": 1,
+      "norm_label": "sprint d (iran-specific, ~\u06f2 \u0647\u0641\u062a\u0647)"
+    },
+    {
+      "label": "Sprint E (Optimization, post-launch)",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L527",
+      "_origin": "ast",
+      "id": "shahrzad_integration_sprint_e_optimization_post_launch",
+      "community": 1,
+      "norm_label": "sprint e (optimization, post-launch)"
+    },
+    {
+      "label": "\ud83e\udd1d \u0648\u0642\u062a\u06cc \u0628\u0647 Claude Code \u0645\u06cc\u200c\u062f\u0647\u06cc\u0645",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L533",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0648\u0642\u062a\u06cc_\u0628\u0647_claude_code_\u0645\u06cc_\u062f\u0647\u06cc\u0645",
+      "community": 1,
+      "norm_label": "\ud83e\udd1d \u0648\u0642\u062a\u06cc \u0628\u0647 claude code \u0645\u06cc\u200c\u062f\u0647\u06cc\u0645"
+    },
+    {
+      "label": "\ud83d\udcdd \u06cc\u0627\u062f\u062f\u0627\u0634\u062a\u200c\u0647\u0627\u06cc \u0645\u0647\u0645",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L548",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u06cc\u0627\u062f\u062f\u0627\u0634\u062a_\u0647\u0627\u06cc_\u0645\u0647\u0645",
+      "community": 1,
+      "norm_label": "\ud83d\udcdd \u06cc\u0627\u062f\u062f\u0627\u0634\u062a\u200c\u0647\u0627\u06cc \u0645\u0647\u0645"
+    },
+    {
+      "label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f1: shahrzad \u0641\u0639\u0644\u06cc production \u0627\u0633\u062a",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L550",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f1_shahrzad_\u0641\u0639\u0644\u06cc_production_\u0627\u0633\u062a",
+      "community": 1,
+      "norm_label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f1: shahrzad \u0641\u0639\u0644\u06cc production \u0627\u0633\u062a"
+    },
+    {
+      "label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f2: Iran deployment fresh \u0634\u0631\u0648\u0639 \u0645\u06cc\u200c\u06a9\u0646\u062f",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L553",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f2_iran_deployment_fresh_\u0634\u0631\u0648\u0639_\u0645\u06cc_\u06a9\u0646\u062f",
+      "community": 1,
+      "norm_label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f2: iran deployment fresh \u0634\u0631\u0648\u0639 \u0645\u06cc\u200c\u06a9\u0646\u062f"
+    },
+    {
+      "label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f3: testing strategy",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L560",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f3_testing_strategy",
+      "community": 1,
+      "norm_label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f3: testing strategy"
+    },
+    {
+      "label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f4: domain \u0642\u0628\u0644 \u0627\u0632 Sprint A",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L567",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f4_domain_\u0642\u0628\u0644_\u0627\u0632_sprint_a",
+      "community": 1,
+      "norm_label": "\u0646\u06a9\u062a\u0647\u200c\u06cc \u06f4: domain \u0642\u0628\u0644 \u0627\u0632 sprint a"
+    },
+    {
+      "label": "\ud83c\udff7\ufe0f \u0646\u0633\u062e\u0647\u200c\u0628\u0646\u062f\u06cc",
+      "file_type": "document",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L572",
+      "_origin": "ast",
+      "id": "shahrzad_integration_\u0646\u0633\u062e\u0647_\u0628\u0646\u062f\u06cc",
+      "community": 1,
+      "norm_label": "\ud83c\udff7\ufe0f \u0646\u0633\u062e\u0647\u200c\u0628\u0646\u062f\u06cc"
+    },
+    {
+      "label": "TECH_DEBT.md",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tech_debt",
+      "community": 6,
+      "norm_label": "tech_debt.md"
+    },
+    {
+      "label": "Technical Debt & Future Improvements",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tech_debt_technical_debt_future_improvements",
+      "community": 0,
+      "norm_label": "technical debt & future improvements"
+    },
+    {
+      "label": "\ud83d\udd34 P1 \u2014 \u0645\u0647\u0645\u060c \u0628\u0627\u06cc\u062f \u0642\u0628\u0644 \u0627\u0632 scale \u062d\u0644 \u0634\u0648\u0646\u062f",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "tech_debt_p1_\u0645\u0647\u0645_\u0628\u0627\u06cc\u062f_\u0642\u0628\u0644_\u0627\u0632_scale_\u062d\u0644_\u0634\u0648\u0646\u062f",
+      "community": 0,
+      "norm_label": "\ud83d\udd34 p1 \u2014 \u0645\u0647\u0645\u060c \u0628\u0627\u06cc\u062f \u0642\u0628\u0644 \u0627\u0632 scale \u062d\u0644 \u0634\u0648\u0646\u062f"
+    },
+    {
+      "label": "TD-001: aiohttp \u0648 NO_PROXY",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "tech_debt_td_001_aiohttp_\u0648_no_proxy",
+      "community": 0,
+      "norm_label": "td-001: aiohttp \u0648 no_proxy"
+    },
+    {
+      "label": "TD-002: \u06a9\u0627\u0646\u0641\u06cc\u06af\u200c\u0647\u0627\u06cc VLESS \u0628\u0627 Reality \u06cc\u0627 gRPC \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0646\u0645\u06cc\u200c\u0634\u0648\u0646\u062f",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "tech_debt_td_002_\u06a9\u0627\u0646\u0641\u06cc\u06af_\u0647\u0627\u06cc_vless_\u0628\u0627_reality_\u06cc\u0627_grpc_\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc_\u0646\u0645\u06cc_\u0634\u0648\u0646\u062f",
+      "community": 0,
+      "norm_label": "td-002: \u06a9\u0627\u0646\u0641\u06cc\u06af\u200c\u0647\u0627\u06cc vless \u0628\u0627 reality \u06cc\u0627 grpc \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0646\u0645\u06cc\u200c\u0634\u0648\u0646\u062f"
+    },
+    {
+      "label": "TD-003: Capability detection static \u0627\u0633\u062a",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "tech_debt_td_003_capability_detection_static_\u0627\u0633\u062a",
+      "community": 0,
+      "norm_label": "td-003: capability detection static \u0627\u0633\u062a"
+    },
+    {
+      "label": "TD-004: \u0645\u062f\u06cc\u0631\u06cc\u062a quota tunnel",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "tech_debt_td_004_\u0645\u062f\u06cc\u0631\u06cc\u062a_quota_tunnel",
+      "community": 0,
+      "norm_label": "td-004: \u0645\u062f\u06cc\u0631\u06cc\u062a quota tunnel"
+    },
+    {
+      "label": "\ud83d\udfe1 P2 \u2014 \u0645\u0647\u0645\u060c \u0628\u0639\u062f \u0627\u0632 launch",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "tech_debt_p2_\u0645\u0647\u0645_\u0628\u0639\u062f_\u0627\u0632_launch",
+      "community": 0,
+      "norm_label": "\ud83d\udfe1 p2 \u2014 \u0645\u0647\u0645\u060c \u0628\u0639\u062f \u0627\u0632 launch"
+    },
+    {
+      "label": "TD-005: Health check \u0631\u0648\u06cc \u063a\u0644\u0637 \u0686\u06cc\u0632 \u0631\u0627 \u062a\u0633\u062a \u0645\u06cc\u200c\u06a9\u0646\u062f",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L103",
+      "_origin": "ast",
+      "id": "tech_debt_td_005_health_check_\u0631\u0648\u06cc_\u063a\u0644\u0637_\u0686\u06cc\u0632_\u0631\u0627_\u062a\u0633\u062a_\u0645\u06cc_\u06a9\u0646\u062f",
+      "community": 0,
+      "norm_label": "td-005: health check \u0631\u0648\u06cc \u063a\u0644\u0637 \u0686\u06cc\u0632 \u0631\u0627 \u062a\u0633\u062a \u0645\u06cc\u200c\u06a9\u0646\u062f"
+    },
+    {
+      "label": "TD-006: HAProxy stats \u062f\u0631 \u0635\u0641\u062d\u0647 \u0645\u062f\u06cc\u0631\u06cc\u062a",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L119",
+      "_origin": "ast",
+      "id": "tech_debt_td_006_haproxy_stats_\u062f\u0631_\u0635\u0641\u062d\u0647_\u0645\u062f\u06cc\u0631\u06cc\u062a",
+      "community": 0,
+      "norm_label": "td-006: haproxy stats \u062f\u0631 \u0635\u0641\u062d\u0647 \u0645\u062f\u06cc\u0631\u06cc\u062a"
+    },
+    {
+      "label": "TD-007: Auto-pause \u0645\u0645\u06a9\u0646 \u0627\u0633\u062a false-positive \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u062f",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L131",
+      "_origin": "ast",
+      "id": "tech_debt_td_007_auto_pause_\u0645\u0645\u06a9\u0646_\u0627\u0633\u062a_false_positive_\u062f\u0627\u0634\u062a\u0647_\u0628\u0627\u0634\u062f",
+      "community": 0,
+      "norm_label": "td-007: auto-pause \u0645\u0645\u06a9\u0646 \u0627\u0633\u062a false-positive \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u062f"
+    },
+    {
+      "label": "TD-008: Log rotation",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L144",
+      "_origin": "ast",
+      "id": "tech_debt_td_008_log_rotation",
+      "community": 0,
+      "norm_label": "td-008: log rotation"
+    },
+    {
+      "label": "\ud83d\udd35 P3 \u2014 \u0628\u0647\u0628\u0648\u062f \u062a\u062c\u0631\u0628\u0647",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L164",
+      "_origin": "ast",
+      "id": "tech_debt_p3_\u0628\u0647\u0628\u0648\u062f_\u062a\u062c\u0631\u0628\u0647",
+      "community": 0,
+      "norm_label": "\ud83d\udd35 p3 \u2014 \u0628\u0647\u0628\u0648\u062f \u062a\u062c\u0631\u0628\u0647"
+    },
+    {
+      "label": "TD-009: TUI \u0648\u0627\u0642\u0639\u06cc \u0628\u0627 textual",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "tech_debt_td_009_tui_\u0648\u0627\u0642\u0639\u06cc_\u0628\u0627_textual",
+      "community": 0,
+      "norm_label": "td-009: tui \u0648\u0627\u0642\u0639\u06cc \u0628\u0627 textual"
+    },
+    {
+      "label": "TD-010: \u0641\u0631\u0648\u0634\u0646\u062f\u06af\u0627\u0646 \u0645\u062e\u062a\u0644\u0641 format \u0647\u0627\u06cc \u0645\u062e\u062a\u0644\u0641",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L179",
+      "_origin": "ast",
+      "id": "tech_debt_td_010_\u0641\u0631\u0648\u0634\u0646\u062f\u06af\u0627\u0646_\u0645\u062e\u062a\u0644\u0641_format_\u0647\u0627\u06cc_\u0645\u062e\u062a\u0644\u0641",
+      "community": 0,
+      "norm_label": "td-010: \u0641\u0631\u0648\u0634\u0646\u062f\u06af\u0627\u0646 \u0645\u062e\u062a\u0644\u0641 format \u0647\u0627\u06cc \u0645\u062e\u062a\u0644\u0641"
+    },
+    {
+      "label": "\u2705 Resolved (\u062a\u0627\u0631\u06cc\u062e\u0686\u0647)",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L193",
+      "_origin": "ast",
+      "id": "tech_debt_resolved_\u062a\u0627\u0631\u06cc\u062e\u0686\u0647",
+      "community": 0,
+      "norm_label": "\u2705 resolved (\u062a\u0627\u0631\u06cc\u062e\u0686\u0647)"
+    },
+    {
+      "label": "TD-DONE-001: \u06a9\u0627\u0646\u0641\u06cc\u06af\u200c\u0647\u0627\u06cc VLESS \u0628\u062f\u0648\u0646 Iran routing rules",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L195",
+      "_origin": "ast",
+      "id": "tech_debt_td_done_001_\u06a9\u0627\u0646\u0641\u06cc\u06af_\u0647\u0627\u06cc_vless_\u0628\u062f\u0648\u0646_iran_routing_rules",
+      "community": 0,
+      "norm_label": "td-done-001: \u06a9\u0627\u0646\u0641\u06cc\u06af\u200c\u0647\u0627\u06cc vless \u0628\u062f\u0648\u0646 iran routing rules"
+    },
+    {
+      "label": "TD-DONE-002: Plain OpenVPN/WireGuard \u062f\u0631 \u0627\u06cc\u0631\u0627\u0646 DPI block \u0627\u0633\u062a",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L200",
+      "_origin": "ast",
+      "id": "tech_debt_td_done_002_plain_openvpn_wireguard_\u062f\u0631_\u0627\u06cc\u0631\u0627\u0646_dpi_block_\u0627\u0633\u062a",
+      "community": 0,
+      "norm_label": "td-done-002: plain openvpn/wireguard \u062f\u0631 \u0627\u06cc\u0631\u0627\u0646 dpi block \u0627\u0633\u062a"
+    },
+    {
+      "label": "TD-DONE-003: ArvanCloud bucket \u0627\u0632 \u062e\u0627\u0631\u062c \u06a9\u0646\u062f \u0627\u0633\u062a",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L205",
+      "_origin": "ast",
+      "id": "tech_debt_td_done_003_arvancloud_bucket_\u0627\u0632_\u062e\u0627\u0631\u062c_\u06a9\u0646\u062f_\u0627\u0633\u062a",
+      "community": 0,
+      "norm_label": "td-done-003: arvancloud bucket \u0627\u0632 \u062e\u0627\u0631\u062c \u06a9\u0646\u062f \u0627\u0633\u062a"
+    },
+    {
+      "label": "\ud83d\udcca Metrics \u0628\u0631\u0627\u06cc \u0631\u062f\u06cc\u0627\u0628\u06cc",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L212",
+      "_origin": "ast",
+      "id": "tech_debt_metrics_\u0628\u0631\u0627\u06cc_\u0631\u062f\u06cc\u0627\u0628\u06cc",
+      "community": 0,
+      "norm_label": "\ud83d\udcca metrics \u0628\u0631\u0627\u06cc \u0631\u062f\u06cc\u0627\u0628\u06cc"
+    },
+    {
+      "label": "\ud83e\udd1d Contributing to this file",
+      "file_type": "document",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L226",
+      "_origin": "ast",
+      "id": "tech_debt_contributing_to_this_file",
+      "community": 0,
+      "norm_label": "\ud83e\udd1d contributing to this file"
+    },
+    {
+      "label": "API_KEYS_SETUP.md",
+      "file_type": "document",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_api_keys_setup",
+      "community": 9,
+      "norm_label": "api_keys_setup.md"
+    },
+    {
+      "label": "API Keys Setup",
+      "file_type": "document",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_api_keys_setup_api_keys_setup",
+      "community": 9,
+      "norm_label": "api keys setup"
+    },
+    {
+      "label": "Template",
+      "file_type": "document",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "docs_api_keys_setup_template",
+      "community": 9,
+      "norm_label": "template"
+    },
+    {
+      "label": "Important security notes",
+      "file_type": "document",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "docs_api_keys_setup_important_security_notes",
+      "community": 9,
+      "norm_label": "important security notes"
+    },
+    {
+      "label": "How keys are used",
+      "file_type": "document",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "docs_api_keys_setup_how_keys_are_used",
+      "community": 9,
+      "norm_label": "how keys are used"
+    },
+    {
+      "label": "What if I don't want deep tests?",
+      "file_type": "document",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "docs_api_keys_setup_what_if_i_don_t_want_deep_tests",
+      "community": 9,
+      "norm_label": "what if i don't want deep tests?"
+    },
+    {
+      "label": "Where to get keys",
+      "file_type": "document",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_api_keys_setup_where_to_get_keys",
+      "community": 9,
+      "norm_label": "where to get keys"
+    },
+    {
+      "label": "ARCHITECTURE.md",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_architecture",
+      "community": 6,
+      "norm_label": "architecture.md"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_architecture_architecture",
+      "community": 3,
+      "norm_label": "architecture"
+    },
+    {
+      "label": "Overview",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_architecture_overview",
+      "community": 3,
+      "norm_label": "overview"
+    },
+    {
+      "label": "Components",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "docs_architecture_components",
+      "community": 3,
+      "norm_label": "components"
+    },
+    {
+      "label": "HAProxy",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_architecture_haproxy",
+      "community": 3,
+      "norm_label": "haproxy"
+    },
+    {
+      "label": "Xray instances",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "docs_architecture_xray_instances",
+      "community": 3,
+      "norm_label": "xray instances"
+    },
+    {
+      "label": "State management",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "docs_architecture_state_management",
+      "community": 3,
+      "norm_label": "state management"
+    },
+    {
+      "label": "Cron jobs",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "docs_architecture_cron_jobs",
+      "community": 3,
+      "norm_label": "cron jobs"
+    },
+    {
+      "label": "Failure modes & recovery",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "docs_architecture_failure_modes_recovery",
+      "community": 3,
+      "norm_label": "failure modes & recovery"
+    },
+    {
+      "label": "A tunnel fails 2 consecutive quick checks",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "docs_architecture_a_tunnel_fails_2_consecutive_quick_checks",
+      "community": 3,
+      "norm_label": "a tunnel fails 2 consecutive quick checks"
+    },
+    {
+      "label": "After 2 hours",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "docs_architecture_after_2_hours",
+      "community": 3,
+      "norm_label": "after 2 hours"
+    },
+    {
+      "label": "A tunnel passes basic checks but fails deep tests",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "docs_architecture_a_tunnel_passes_basic_checks_but_fails_deep_tests",
+      "community": 3,
+      "norm_label": "a tunnel passes basic checks but fails deep tests"
+    },
+    {
+      "label": "HAProxy pool is empty",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "docs_architecture_haproxy_pool_is_empty",
+      "community": 3,
+      "norm_label": "haproxy pool is empty"
+    },
+    {
+      "label": "NO_PROXY limitations (important for Python)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "docs_architecture_no_proxy_limitations_important_for_python",
+      "community": 3,
+      "norm_label": "no_proxy limitations (important for python)"
+    },
+    {
+      "label": "Solution 1: Use a wrapper",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "docs_architecture_solution_1_use_a_wrapper",
+      "community": 3,
+      "norm_label": "solution 1: use a wrapper"
+    },
+    {
+      "label": "Solution 2: Use `requests` (sync)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "docs_architecture_solution_2_use_requests_sync",
+      "community": 3,
+      "norm_label": "solution 2: use `requests` (sync)"
+    },
+    {
+      "label": "Solution 3: aiohttp-socks library",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "docs_architecture_solution_3_aiohttp_socks_library",
+      "community": 3,
+      "norm_label": "solution 3: aiohttp-socks library"
+    },
+    {
+      "label": "INSTALL.md",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_install",
+      "community": 6,
+      "norm_label": "install.md"
+    },
+    {
+      "label": "Installation Guide",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_install_installation_guide",
+      "community": 7,
+      "norm_label": "installation guide"
+    },
+    {
+      "label": "Requirements",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_install_requirements",
+      "community": 7,
+      "norm_label": "requirements"
+    },
+    {
+      "label": "Step 1: Install Xray-core",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "docs_install_step_1_install_xray_core",
+      "community": 7,
+      "norm_label": "step 1: install xray-core"
+    },
+    {
+      "label": "Step 2: Install tunnel-mgr",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "docs_install_step_2_install_tunnel_mgr",
+      "community": 7,
+      "norm_label": "step 2: install tunnel-mgr"
+    },
+    {
+      "label": "Step 3: First-time setup",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "docs_install_step_3_first_time_setup",
+      "community": 7,
+      "norm_label": "step 3: first-time setup"
+    },
+    {
+      "label": "Step 4: Set up API keys (optional, for deep tests)",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "docs_install_step_4_set_up_api_keys_optional_for_deep_tests",
+      "community": 7,
+      "norm_label": "step 4: set up api keys (optional, for deep tests)"
+    },
+    {
+      "label": "Step 5: Add your first tunnel",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "docs_install_step_5_add_your_first_tunnel",
+      "community": 7,
+      "norm_label": "step 5: add your first tunnel"
+    },
+    {
+      "label": "Step 6: Verify",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_install_step_6_verify",
+      "community": 7,
+      "norm_label": "step 6: verify"
+    },
+    {
+      "label": "Step 7: Connect your application",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "docs_install_step_7_connect_your_application",
+      "community": 7,
+      "norm_label": "step 7: connect your application"
+    },
+    {
+      "label": "Uninstall",
+      "file_type": "document",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L86",
+      "_origin": "ast",
+      "id": "docs_install_uninstall",
+      "community": 7,
+      "norm_label": "uninstall"
+    },
+    {
+      "label": "USAGE.md",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_usage",
+      "community": 5,
+      "norm_label": "usage.md"
+    },
+    {
+      "label": "Command Reference",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_usage_command_reference",
+      "community": 5,
+      "norm_label": "command reference"
+    },
+    {
+      "label": "Interactive Mode",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_usage_interactive_mode",
+      "community": 5,
+      "norm_label": "interactive mode"
+    },
+    {
+      "label": "Direct Commands",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "docs_usage_direct_commands",
+      "community": 5,
+      "norm_label": "direct commands"
+    },
+    {
+      "label": "Adding tunnels",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "docs_usage_adding_tunnels",
+      "community": 5,
+      "norm_label": "adding tunnels"
+    },
+    {
+      "label": "Listing / Status",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "docs_usage_listing_status",
+      "community": 5,
+      "norm_label": "listing / status"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "docs_usage_testing",
+      "community": 5,
+      "norm_label": "testing"
+    },
+    {
+      "label": "Pause / Resume",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "docs_usage_pause_resume",
+      "community": 5,
+      "norm_label": "pause / resume"
+    },
+    {
+      "label": "Removing",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "docs_usage_removing",
+      "community": 5,
+      "norm_label": "removing"
+    },
+    {
+      "label": "Maintenance",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "docs_usage_maintenance",
+      "community": 5,
+      "norm_label": "maintenance"
+    },
+    {
+      "label": "VLESS URL formats supported",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "docs_usage_vless_url_formats_supported",
+      "community": 5,
+      "norm_label": "vless url formats supported"
+    },
+    {
+      "label": "Logs",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "docs_usage_logs",
+      "community": 5,
+      "norm_label": "logs"
+    },
+    {
+      "label": "State files",
+      "file_type": "document",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "docs_usage_state_files",
+      "community": 5,
+      "norm_label": "state files"
+    },
+    {
+      "label": "vless-url-format.md",
+      "file_type": "document",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "examples_vless_url_format",
+      "community": 10,
+      "norm_label": "vless-url-format.md"
+    },
+    {
+      "label": "Supported VLESS URL formats",
+      "file_type": "document",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "examples_vless_url_format_supported_vless_url_formats",
+      "community": 10,
+      "norm_label": "supported vless url formats"
+    },
+    {
+      "label": "VLESS over WebSocket (with camouflage)",
+      "file_type": "document",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "examples_vless_url_format_vless_over_websocket_with_camouflage",
+      "community": 10,
+      "norm_label": "vless over websocket (with camouflage)"
+    },
+    {
+      "label": "VLESS over TCP with HTTP camouflage",
+      "file_type": "document",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "examples_vless_url_format_vless_over_tcp_with_http_camouflage",
+      "community": 10,
+      "norm_label": "vless over tcp with http camouflage"
+    },
+    {
+      "label": "Currently supported",
+      "file_type": "document",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "examples_vless_url_format_currently_supported",
+      "community": 10,
+      "norm_label": "currently supported"
+    },
+    {
+      "label": "Not yet supported",
+      "file_type": "document",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "examples_vless_url_format_not_yet_supported",
+      "community": 10,
+      "norm_label": "not yet supported"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/install-xray.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_install_xray",
+      "target": "scripts_install_xray_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "changelog",
+      "target": "changelog_changelog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "changelog",
+      "target": "tech_debt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "changelog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "changelog_changelog",
+      "target": "changelog_1_0_0_2026_04_30",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "changelog_1_0_0_2026_04_30",
+      "target": "changelog_added",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "changelog_1_0_0_2026_04_30",
+      "target": "changelog_known_issues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "changelog_1_0_0_2026_04_30",
+      "target": "changelog_tested",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "contributing",
+      "target": "contributing_contributing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "contributing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "contributing_contributing",
+      "target": "contributing_before_submitting",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "contributing_contributing",
+      "target": "contributing_code_style",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "contributing_contributing",
+      "target": "contributing_local_development",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "contributing_contributing",
+      "target": "contributing_reporting_issues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "contributing_contributing",
+      "target": "contributing_testing_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_api_keys_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_install",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_usage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_iranservertunel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "shahrzad_integration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "tech_debt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "readme_iranservertunel",
+      "target": "readme_disclaimer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "readme_iranservertunel",
+      "target": "readme_english",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "readme_iranservertunel",
+      "target": "readme_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "readme_iranservertunel",
+      "target": "readme_project_documentation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "readme_iranservertunel",
+      "target": "readme_\u0641\u0627\u0631\u0633\u06cc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "readme_english",
+      "target": "readme_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "readme_english",
+      "target": "readme_features",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "readme_english",
+      "target": "readme_iran_specific_design_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "readme_english",
+      "target": "readme_quick_start",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "readme_english",
+      "target": "readme_why_this_exists",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "readme_\u0641\u0627\u0631\u0633\u06cc",
+      "target": "readme_\u0631\u0627\u0647_\u0627\u0646\u062f\u0627\u0632\u06cc_\u0633\u0631\u06cc\u0639",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "readme_\u0641\u0627\u0631\u0633\u06cc",
+      "target": "readme_\u0648\u06cc\u0698\u06af\u06cc_\u0647\u0627",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "readme_\u0641\u0627\u0631\u0633\u06cc",
+      "target": "readme_\u0686\u0631\u0627_\u0627\u06cc\u0646_\u0627\u0628\u0632\u0627\u0631",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "shahrzad_integration",
+      "target": "shahrzad_integration_shahrzad_integration_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "shahrzad_integration_shahrzad_integration_guide",
+      "target": "shahrzad_integration_\u0627\u0635\u0648\u0644_\u0637\u0631\u0627\u062d\u06cc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "shahrzad_integration_shahrzad_integration_guide",
+      "target": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L463",
+      "weight": 1.0,
+      "source": "shahrzad_integration_shahrzad_integration_guide",
+      "target": "shahrzad_integration_\u0645\u0639\u0645\u0627\u0631\u06cc_\u0646\u0647\u0627\u06cc\u06cc_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L572",
+      "weight": 1.0,
+      "source": "shahrzad_integration_shahrzad_integration_guide",
+      "target": "shahrzad_integration_\u0646\u0633\u062e\u0647_\u0628\u0646\u062f\u06cc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L533",
+      "weight": 1.0,
+      "source": "shahrzad_integration_shahrzad_integration_guide",
+      "target": "shahrzad_integration_\u0648\u0642\u062a\u06cc_\u0628\u0647_claude_code_\u0645\u06cc_\u062f\u0647\u06cc\u0645",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L500",
+      "weight": 1.0,
+      "source": "shahrzad_integration_shahrzad_integration_guide",
+      "target": "shahrzad_integration_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f_\u062a\u0631\u062a\u06cc\u0628_\u0627\u062c\u0631\u0627",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L548",
+      "weight": 1.0,
+      "source": "shahrzad_integration_shahrzad_integration_guide",
+      "target": "shahrzad_integration_\u06cc\u0627\u062f\u062f\u0627\u0634\u062a_\u0647\u0627\u06cc_\u0645\u0647\u0645",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_001_region_aware_deployment_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_002_domain_configuration_per_deployment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_003_ai_services_proxy_support_tunnel_proxy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_004_direct_hosts_file_iran_aware_no_proxy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_005_payment_provider_feature_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L196",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_006_messenger_feature_flags_telegram_vs_bale",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_007_language_feature_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L251",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_008_storage_backend_per_region",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L287",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_009_email_provider_per_region",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L309",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_010_zarinpal_specific_routing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L330",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_011_sentry_per_region",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L358",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_012_database_per_region",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L369",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_013_api_keys_per_region",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L397",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_014_frontend_region_awareness",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L425",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_015_cron_job_differences_per_region",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L451",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u0641\u0647\u0631\u0633\u062a_\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a_\u0644\u0627\u0632\u0645",
+      "target": "shahrzad_integration_int_016_admin_panel_region_awareness",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L504",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f_\u062a\u0631\u062a\u06cc\u0628_\u0627\u062c\u0631\u0627",
+      "target": "shahrzad_integration_sprint_a_foundation_\u06f1_\u0647\u0641\u062a\u0647",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L510",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f_\u062a\u0631\u062a\u06cc\u0628_\u0627\u062c\u0631\u0627",
+      "target": "shahrzad_integration_sprint_b_tunnel_integration_\u06f1_\u0647\u0641\u062a\u0647",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L516",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f_\u062a\u0631\u062a\u06cc\u0628_\u0627\u062c\u0631\u0627",
+      "target": "shahrzad_integration_sprint_c_region_specific_providers_\u06f1_\u0647\u0641\u062a\u0647",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L522",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f_\u062a\u0631\u062a\u06cc\u0628_\u0627\u062c\u0631\u0627",
+      "target": "shahrzad_integration_sprint_d_iran_specific_\u06f2_\u0647\u0641\u062a\u0647",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L527",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u067e\u06cc\u0634\u0646\u0647\u0627\u062f_\u062a\u0631\u062a\u06cc\u0628_\u0627\u062c\u0631\u0627",
+      "target": "shahrzad_integration_sprint_e_optimization_post_launch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L550",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u06cc\u0627\u062f\u062f\u0627\u0634\u062a_\u0647\u0627\u06cc_\u0645\u0647\u0645",
+      "target": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f1_shahrzad_\u0641\u0639\u0644\u06cc_production_\u0627\u0633\u062a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L553",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u06cc\u0627\u062f\u062f\u0627\u0634\u062a_\u0647\u0627\u06cc_\u0645\u0647\u0645",
+      "target": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f2_iran_deployment_fresh_\u0634\u0631\u0648\u0639_\u0645\u06cc_\u06a9\u0646\u062f",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L560",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u06cc\u0627\u062f\u062f\u0627\u0634\u062a_\u0647\u0627\u06cc_\u0645\u0647\u0645",
+      "target": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f3_testing_strategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SHAHRZAD_INTEGRATION.md",
+      "source_location": "L567",
+      "weight": 1.0,
+      "source": "shahrzad_integration_\u06cc\u0627\u062f\u062f\u0627\u0634\u062a_\u0647\u0627\u06cc_\u0645\u0647\u0645",
+      "target": "shahrzad_integration_\u0646\u06a9\u062a\u0647_\u06cc_\u06f4_domain_\u0642\u0628\u0644_\u0627\u0632_sprint_a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tech_debt",
+      "target": "tech_debt_technical_debt_future_improvements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L226",
+      "weight": 1.0,
+      "source": "tech_debt_technical_debt_future_improvements",
+      "target": "tech_debt_contributing_to_this_file",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L212",
+      "weight": 1.0,
+      "source": "tech_debt_technical_debt_future_improvements",
+      "target": "tech_debt_metrics_\u0628\u0631\u0627\u06cc_\u0631\u062f\u06cc\u0627\u0628\u06cc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tech_debt_technical_debt_future_improvements",
+      "target": "tech_debt_p1_\u0645\u0647\u0645_\u0628\u0627\u06cc\u062f_\u0642\u0628\u0644_\u0627\u0632_scale_\u062d\u0644_\u0634\u0648\u0646\u062f",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "tech_debt_technical_debt_future_improvements",
+      "target": "tech_debt_p2_\u0645\u0647\u0645_\u0628\u0639\u062f_\u0627\u0632_launch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "tech_debt_technical_debt_future_improvements",
+      "target": "tech_debt_p3_\u0628\u0647\u0628\u0648\u062f_\u062a\u062c\u0631\u0628\u0647",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "tech_debt_technical_debt_future_improvements",
+      "target": "tech_debt_resolved_\u062a\u0627\u0631\u06cc\u062e\u0686\u0647",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tech_debt_p1_\u0645\u0647\u0645_\u0628\u0627\u06cc\u062f_\u0642\u0628\u0644_\u0627\u0632_scale_\u062d\u0644_\u0634\u0648\u0646\u062f",
+      "target": "tech_debt_td_001_aiohttp_\u0648_no_proxy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "tech_debt_p1_\u0645\u0647\u0645_\u0628\u0627\u06cc\u062f_\u0642\u0628\u0644_\u0627\u0632_scale_\u062d\u0644_\u0634\u0648\u0646\u062f",
+      "target": "tech_debt_td_002_\u06a9\u0627\u0646\u0641\u06cc\u06af_\u0647\u0627\u06cc_vless_\u0628\u0627_reality_\u06cc\u0627_grpc_\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc_\u0646\u0645\u06cc_\u0634\u0648\u0646\u062f",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tech_debt_p1_\u0645\u0647\u0645_\u0628\u0627\u06cc\u062f_\u0642\u0628\u0644_\u0627\u0632_scale_\u062d\u0644_\u0634\u0648\u0646\u062f",
+      "target": "tech_debt_td_003_capability_detection_static_\u0627\u0633\u062a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "tech_debt_p1_\u0645\u0647\u0645_\u0628\u0627\u06cc\u062f_\u0642\u0628\u0644_\u0627\u0632_scale_\u062d\u0644_\u0634\u0648\u0646\u062f",
+      "target": "tech_debt_td_004_\u0645\u062f\u06cc\u0631\u06cc\u062a_quota_tunnel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "tech_debt_p2_\u0645\u0647\u0645_\u0628\u0639\u062f_\u0627\u0632_launch",
+      "target": "tech_debt_td_005_health_check_\u0631\u0648\u06cc_\u063a\u0644\u0637_\u0686\u06cc\u0632_\u0631\u0627_\u062a\u0633\u062a_\u0645\u06cc_\u06a9\u0646\u062f",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "tech_debt_p2_\u0645\u0647\u0645_\u0628\u0639\u062f_\u0627\u0632_launch",
+      "target": "tech_debt_td_006_haproxy_stats_\u062f\u0631_\u0635\u0641\u062d\u0647_\u0645\u062f\u06cc\u0631\u06cc\u062a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "tech_debt_p2_\u0645\u0647\u0645_\u0628\u0639\u062f_\u0627\u0632_launch",
+      "target": "tech_debt_td_007_auto_pause_\u0645\u0645\u06a9\u0646_\u0627\u0633\u062a_false_positive_\u062f\u0627\u0634\u062a\u0647_\u0628\u0627\u0634\u062f",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "tech_debt_p2_\u0645\u0647\u0645_\u0628\u0639\u062f_\u0627\u0632_launch",
+      "target": "tech_debt_td_008_log_rotation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "tech_debt_p3_\u0628\u0647\u0628\u0648\u062f_\u062a\u062c\u0631\u0628\u0647",
+      "target": "tech_debt_td_009_tui_\u0648\u0627\u0642\u0639\u06cc_\u0628\u0627_textual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "tech_debt_p3_\u0628\u0647\u0628\u0648\u062f_\u062a\u062c\u0631\u0628\u0647",
+      "target": "tech_debt_td_010_\u0641\u0631\u0648\u0634\u0646\u062f\u06af\u0627\u0646_\u0645\u062e\u062a\u0644\u0641_format_\u0647\u0627\u06cc_\u0645\u062e\u062a\u0644\u0641",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L195",
+      "weight": 1.0,
+      "source": "tech_debt_resolved_\u062a\u0627\u0631\u06cc\u062e\u0686\u0647",
+      "target": "tech_debt_td_done_001_\u06a9\u0627\u0646\u0641\u06cc\u06af_\u0647\u0627\u06cc_vless_\u0628\u062f\u0648\u0646_iran_routing_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L200",
+      "weight": 1.0,
+      "source": "tech_debt_resolved_\u062a\u0627\u0631\u06cc\u062e\u0686\u0647",
+      "target": "tech_debt_td_done_002_plain_openvpn_wireguard_\u062f\u0631_\u0627\u06cc\u0631\u0627\u0646_dpi_block_\u0627\u0633\u062a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TECH_DEBT.md",
+      "source_location": "L205",
+      "weight": 1.0,
+      "source": "tech_debt_resolved_\u062a\u0627\u0631\u06cc\u062e\u0686\u0647",
+      "target": "tech_debt_td_done_003_arvancloud_bucket_\u0627\u0632_\u062e\u0627\u0631\u062c_\u06a9\u0646\u062f_\u0627\u0633\u062a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_api_keys_setup",
+      "target": "docs_api_keys_setup_api_keys_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "docs_api_keys_setup_api_keys_setup",
+      "target": "docs_api_keys_setup_how_keys_are_used",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "docs_api_keys_setup_api_keys_setup",
+      "target": "docs_api_keys_setup_important_security_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "docs_api_keys_setup_api_keys_setup",
+      "target": "docs_api_keys_setup_template",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "docs_api_keys_setup_api_keys_setup",
+      "target": "docs_api_keys_setup_what_if_i_don_t_want_deep_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/API_KEYS_SETUP.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_api_keys_setup_api_keys_setup",
+      "target": "docs_api_keys_setup_where_to_get_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_architecture",
+      "target": "docs_architecture_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "docs_install",
+      "target": "docs_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture",
+      "target": "docs_architecture_components",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture",
+      "target": "docs_architecture_failure_modes_recovery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture",
+      "target": "docs_architecture_no_proxy_limitations_important_for_python",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture",
+      "target": "docs_architecture_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "docs_architecture_components",
+      "target": "docs_architecture_cron_jobs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_architecture_components",
+      "target": "docs_architecture_haproxy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "docs_architecture_components",
+      "target": "docs_architecture_state_management",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "docs_architecture_components",
+      "target": "docs_architecture_xray_instances",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "docs_architecture_failure_modes_recovery",
+      "target": "docs_architecture_a_tunnel_fails_2_consecutive_quick_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "docs_architecture_failure_modes_recovery",
+      "target": "docs_architecture_a_tunnel_passes_basic_checks_but_fails_deep_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "docs_architecture_failure_modes_recovery",
+      "target": "docs_architecture_after_2_hours",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "docs_architecture_failure_modes_recovery",
+      "target": "docs_architecture_haproxy_pool_is_empty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "docs_architecture_no_proxy_limitations_important_for_python",
+      "target": "docs_architecture_solution_1_use_a_wrapper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "docs_architecture_no_proxy_limitations_important_for_python",
+      "target": "docs_architecture_solution_2_use_requests_sync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "docs_architecture_no_proxy_limitations_important_for_python",
+      "target": "docs_architecture_solution_3_aiohttp_socks_library",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_install",
+      "target": "docs_install_installation_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_step_1_install_xray_core",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_step_2_install_tunnel_mgr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_step_3_first_time_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_step_4_set_up_api_keys_optional_for_deep_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_step_5_add_your_first_tunnel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_step_6_verify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_step_7_connect_your_application",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INSTALL.md",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "docs_install_installation_guide",
+      "target": "docs_install_uninstall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_usage",
+      "target": "docs_usage_command_reference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "docs_usage_command_reference",
+      "target": "docs_usage_direct_commands",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "docs_usage_command_reference",
+      "target": "docs_usage_interactive_mode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "docs_usage_command_reference",
+      "target": "docs_usage_logs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "docs_usage_command_reference",
+      "target": "docs_usage_state_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "docs_usage_command_reference",
+      "target": "docs_usage_vless_url_formats_supported",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "docs_usage_direct_commands",
+      "target": "docs_usage_adding_tunnels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "docs_usage_direct_commands",
+      "target": "docs_usage_listing_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "docs_usage_direct_commands",
+      "target": "docs_usage_maintenance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "docs_usage_direct_commands",
+      "target": "docs_usage_pause_resume",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "docs_usage_direct_commands",
+      "target": "docs_usage_removing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/USAGE.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "docs_usage_direct_commands",
+      "target": "docs_usage_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "examples_vless_url_format",
+      "target": "examples_vless_url_format_supported_vless_url_formats",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "examples_vless_url_format_supported_vless_url_formats",
+      "target": "examples_vless_url_format_currently_supported",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "examples_vless_url_format_supported_vless_url_formats",
+      "target": "examples_vless_url_format_not_yet_supported",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "examples_vless_url_format_supported_vless_url_formats",
+      "target": "examples_vless_url_format_vless_over_tcp_with_http_camouflage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "examples/vless-url-format.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "examples_vless_url_format_supported_vless_url_formats",
+      "target": "examples_vless_url_format_vless_over_websocket_with_camouflage",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}
